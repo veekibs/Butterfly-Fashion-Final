@@ -1,0 +1,10 @@
+project scratchpad!!!!
+
+--- --- --- --- --- --- --- ---
+
+TODOs:
+- rebuild the flipping backend ugh AND FRONTEND DONT FORGET
+- put the server side cart in cos local storage SUCKS
+
+--- --- --- --- --- --- --- ---
+
