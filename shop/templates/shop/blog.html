@@ -1,0 +1,223 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Blog | Butterfly Fashion{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'shop/css/blog.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content %}
+
+<section id="landing"></section>
+
+<div class="post-filter sectionfp">
+  <span class="filter-item active-filter" data-filter="all">all</span>
+  <span class="filter-item" data-filter="beauty">beauty</span>
+  <span class="filter-item" data-filter="personal-development">personal development</span>
+  <span class="filter-item" data-filter="mental-health">mental health</span>
+  <span class="filter-item" data-filter="relationships">relationships</span>
+</div>
+
+<section class="posts-container sectionfp">
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/makeup stuff.jpg' %}" alt="makeup products" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">the top ten best beauty products of 2022</a>
+    <span class="post-date">25th nov 2022</span>
+    <p class="post-description">this year's been one hell of a ride hasn't it? well, fear not! at least, in the midst of chaos, you can look your best, no matter what!</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/willow.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">willow veena</span>
+    </div>
+  </div>
+
+  <div class="post-box relationships">
+    <img src="{% static 'shop/images/blog/posts/snowfriends.jpeg' %}" alt="two friends in the snow" class="post-img">
+    <h2 class="category">relationships</h2>
+    <a href="#" class="post-title">how to make the most out of your friendships</a>
+    <span class="post-date">20th dec 2022</span>
+    <p class="post-description">discover the magic of the holiday season by strengthening the bonds with your closest friends! learn how to deepen your connections and build trust.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/girl1.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">kylie magan</span>
+    </div>
+  </div>
+
+  <div class="post-box mental-health">
+    <img src="{% static 'shop/images/blog/posts/mentalhealthhead.png' %}" alt="thoughts in a head" class="post-img">
+    <h2 class="category">mental health</h2>
+    <a href="#" class="post-title">finding balance: taking care of your mental health</a>
+    <span class="post-date">12th oct 2022</span>
+    <p class="post-description">this blog post explores the importance of maintaining good mental health, especially during challenging times. from self-care tips to coping strategies.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/girl2.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">jennie park</span>
+    </div>
+  </div>
+
+  <div class="post-box personal-development">
+    <img src="{% static 'shop/images/blog/posts/PD.jpeg' %}" alt="a girl holding books" class="post-img">
+    <h2 class="category">personal development</h2>
+    <a href="#" class="post-title">empowering your potential: top ten books for personal growth</a>
+    <span class="post-date">16th sept 2022</span>
+    <p class="post-description">discover the top ten books for personal development that will inspire and empower you to reach your full potential!</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/girl3.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">maria lee</span>
+    </div>
+  </div>
+
+  <div class="post-box mental-health">
+    <img src="{% static 'shop/images/blog/posts/mentalhealth.png' %}" alt="mental health is your priority" class="post-img">
+    <h2 class="category">mental health</h2>
+    <a href="#" class="post-title">mind matters: navigating your mental health</a>
+    <span class="post-date">2nd jan 2022</span>
+    <p class="post-description">in this blog, we explore different ways to take care of your mental health. from coping mechanisms for stress to navigating difficult emotions.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/girl4.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">katie wyland</span>
+    </div>
+  </div>
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/blackgirl.jpeg' %}" alt="pretty black girl" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">empowering black beauty: celebrating young black girls</a>
+    <span class="post-date">22nd jun 2022</span>
+    <p class="post-description">in a world where beauty standards often exclude people of color, it's important to celebrate and empower young black girls.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/pretty.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">tiana marble</span>
+    </div>
+  </div>
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/freckles.jpeg' %}" alt="pretty black girl with freckles" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">beauty and the freckles</a>
+    <span class="post-date">25th jul 2022</span>
+    <p class="post-description">embrace your natural beauty and learn tips and tricks to enhance your freckles with makeup and skincare!</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/gal.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">leshawna briggs</span>
+    </div>
+  </div>
+
+  <div class="post-box relationships">
+    <img src="{% static 'shop/images/blog/posts/xoxo.jpeg' %}" alt="friends studying" class="post-img">
+    <h2 class="category">relationships</h2>
+    <a href="#" class="post-title">can you have fun whilst you study?</a>
+    <span class="post-date">12th sept 2022</span>
+    <p class="post-description">discover the power of teamwork when it comes to studying and acing your exams! in this blog, we share some helpful tips and tricks.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/girlwtvr.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">bailey sky</span>
+    </div>
+  </div>
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/pinkmakeup.jpeg' %}" alt="pink makeup products" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">glow up girls</a>
+    <span class="post-date">29th aug 2022</span>
+    <p class="post-description">whether it's for a school dance or just a day out with friends, every girl deserves to feel confident in her own skin!</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/red.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">faye mckelly</span>
+    </div>
+  </div>
+
+  <div class="post-box personal-development">
+    <img src="{% static 'shop/images/blog/posts/staybrave.jpeg' %}" alt="staying brave" class="post-img">
+    <h2 class="category">personal development</h2>
+    <a href="#" class="post-title">braving the winter storm</a>
+    <span class="post-date">15th dec 2022</span>
+    <p class="post-description">in this article, we explore the ways in which you can develop yourself personally and find the strength to stay brave even in the face of adversity.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/cara.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">cara meline</span>
+    </div>
+  </div>
+
+  <div class="post-box mental-health">
+    <img src="{% static 'shop/images/blog/posts/ewsocialmedia.png' %}" alt="social media is bad" class="post-img">
+    <h2 class="category">mental health</h2>
+    <a href="#" class="post-title">sun, social media, and mental health</a>
+    <span class="post-date">2nd july 2022</span>
+    <p class="post-description">as the summer heats up, so does our use of social media. but for many young people, this can have a negative impact on their mental health.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/gale.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">gale summers</span>
+    </div>
+  </div>
+
+  <div class="post-box personal-development">
+    <img src="{% static 'shop/images/blog/posts/!.jpeg' %}" alt="mindmap of who you could be" class="post-img">
+    <h2 class="category">personal development</h2>
+    <a href="#" class="post-title">embrace your inner sunshine</a>
+    <span class="post-date">5th jun 2022</span>
+    <p class="post-description">this summer, take some time to focus on yourself and grow into the best version of you! this blog post offers advice and tips for developing a positive mindset.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/barbie.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">barbara argan</span>
+    </div>
+  </div>
+
+  <div class="post-box mental-health">
+    <img src="{% static 'shop/images/blog/posts/progress.jpeg' %}" alt="slow progress is still progress" class="post-img">
+    <h2 class="category">mental health</h2>
+    <a href="#" class="post-title">new year, new progress</a>
+    <span class="post-date">1st jan 2022</span>
+    <p class="post-description">as we enter the new year, it's important to focus on making progress in our mental health journeys, no matter how slow that progress may be.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/lizzy.png' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">elizabeth barnett</span>
+    </div>
+  </div>
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/boxbraids.jpeg' %}" alt="box braids" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">easter braids</a>
+    <span class="post-date">2nd apr 2022</span>
+    <p class="post-description">in this blog post, we'll be exploring the beauty and versatility of box braids and how they can be styled for Easter. from pastel colored accessories to bunny ear inspired styles!</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/orangey.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">kenna hayfield</span>
+    </div>
+  </div>
+
+  <div class="post-box beauty">
+    <img src="{% static 'shop/images/blog/posts/mani.png' %}" alt="black girl with manicure" class="post-img">
+    <h2 class="category">beauty</h2>
+    <a href="#" class="post-title">summer beauty</a>
+    <span class="post-date">12th aug 2022</span>
+    <p class="post-description">get ready for summer with these beauty tips for keeping your nails in top shape! whether you're hitting the beach or just lounging by the pool.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/lady.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">anne bardugo</span>
+    </div>
+  </div>
+
+  <div class="post-box relationships">
+    <img src="{% static 'shop/images/blog/posts/besties.jpeg' %}" alt="two girls smiling" class="post-img">
+    <h2 class="category">relationships</h2>
+    <a href="#" class="post-title">summer styling with your bestie!</a>
+    <span class="post-date">1st jun 2022</span>
+    <p class="post-description">summer is here, and what better way to spend it than with your best friend? this blog post will give you the ultimate guide on how to coordinate your outfits.</p>
+    <div class="profile">
+      <img src="{% static 'shop/images/blog/pfp/pinknblue.jpeg' %}" alt="girl pfp" class="profile-img">
+      <span class="profile-name">heather silvers</span>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'shop/js/blog.js' %}"></script>
+{% endblock %}

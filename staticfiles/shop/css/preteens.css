@@ -1,0 +1,19 @@
+/* in shop/static/shop/css/preteens.css */
+
+/* Banner for the "Tops" section divider */
+#naa {
+  background-image: url('../images/banners/topsp.jpg');
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Banner for the "Bottoms" section divider */
+#na {
+  background-image: url('../images/banners/bottoms.jpg');
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}

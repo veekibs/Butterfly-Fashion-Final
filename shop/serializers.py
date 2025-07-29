@@ -5,7 +5,6 @@ from .models import Product, Cart, CartItem
 
 # ====================================================================================
 # === PRODUCT SERIALIZERS ==========================================================
-# ====================================================================================
 
 # This serializer is for the main product list page (e.g., /api/products/)
 class ProductSerializer(serializers.ModelSerializer):
@@ -19,9 +18,7 @@ class SimpleProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name', 'price', 'image_url']
 
-# ====================================================================================
 # === CART SERIALIZERS =============================================================
-# ====================================================================================
 
 # A serializer for the CartItem model
 class CartItemSerializer(serializers.ModelSerializer):

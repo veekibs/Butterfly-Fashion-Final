@@ -1,0 +1,30 @@
+/* === PAGE-SPECIFIC BANNER STYLES ================================== */
+
+/* A single, reusable class for all the banner sections */
+.about-banner {
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Specific background images for each section */
+#aboutus { background-image: url('../images/about/1.jpg'); }
+#aboutuss { background-image: url('../images/about/2.jpg'); }
+#au { background-image: url('../images/about/3.jpg'); }
+#abt { background-image: url('../images/about/4.jpg'); }
+#abtus { background-image: url('../images/about/5.jpg'); }
+#abus { background-image: url('../images/about/6.jpg'); }
+#abuss { background-image: url('../images/about/7.jpg'); }
+#abussi { background-image: url('../images/about/8.jpg'); }
+#abussie { background-image: url('../images/about/9.jpg'); }
+#abussss { background-image: url('../images/about/10.jpg'); }
+#abusssiee { background-image: url('../images/about/11.jpg'); }
+
+/* === RESPONSIVE ADJUSTMENTS ======================================= */
+@media screen and (max-width: 768px) {
+  .about-banner {
+    height: 60vh; /* Make banners shorter on smaller screens */
+  }
+}

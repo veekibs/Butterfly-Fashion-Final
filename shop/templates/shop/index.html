@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Homepage | Butterfly Fashion{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'shop/css/index.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content %}
+
+<section id="shipping-free">
+  <ion-icon name="airplane-outline" class="shipping-free-icon"></ion-icon>
+  <span class="shipping-free-text">free shipping. forever. our treat! love, butterfly fashion xox</span>
+</section>
+
+<section id="landing"></section>
+
+<section id="fproduct" class="sectionfp">
+  <h2>featured products</h2>
+  <p>winter collection for preteens (11-14yrs)</p>
+  <div class="fprocontainer">
+      </div>
+</section>
+
+<section id="fproductt" class="secfp">
+  <h2>featured products</h2>
+  <p>winter collection for teenagers (15-17yrs)</p>
+  <div class="fpcontainer">
+      </div>
+</section>
+
+<section id="banner" class="section-m1">
+  <a href="{% url 'new-arrivals' %}">
+    <button class="normal">shop now</button>
+  </a>
+</section>
+
+<div id="popup">
+  <div id="popup-content">
+    <h2><strong>how can we make your experience better?</strong></h2>
+    <input type="text" placeholder="please type here...">
+    <button class="sendbutton">send</button>
+  </div>
+  <div id="popup-arrow-container">
+    <a class="arrow-up"><ion-icon name="chevron-up-circle-outline"></ion-icon></a>
+    <a class="arrow-down"><ion-icon name="chevron-down-circle-outline"></ion-icon></a>
+  </div>
+</div>
+
+{% endblock %}
