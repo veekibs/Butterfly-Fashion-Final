@@ -1,0 +1,103 @@
+/* --- Page Banner --- */
+#landing {
+  background-image: url("../images/banners/yourcart.gif");
+  height: 60vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Breadcrumb Navigation --- */
+#breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+#breadcrumb ul { list-style: none; padding: 0; margin: 0; }
+#breadcrumb li { display: inline-block; }
+#breadcrumb li a {
+  color: #949494;
+  text-decoration: none;
+  position: relative;
+  padding: 0 20px;
+  font-size: 1.2rem;
+}
+#breadcrumb li:first-child a {
+  color: black;
+  font-weight: bold;
+}
+#breadcrumb li a::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+}
+#breadcrumb li:first-child a::before {
+  content: none;
+}
+
+/* --- Cart & Totals Tables --- */
+.products-container {
+    padding: 20px 80px;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table thead td {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e2e9e1;
+    text-align: left;
+}
+.table tbody td {
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e9e1;
+    vertical-align: middle;
+}
+.table tbody ion-icon {
+    color: #ff4278;
+    cursor: pointer;
+}
+
+#cart-summary {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 40px 80px;
+}
+#charity-box, #totals-box {
+    width: 48%;
+    border: 1px solid #e2e9e1;
+    padding: 30px;
+}
+#totals-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#totals-box table td {
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e9e1;
+}
+#totals-box table td:last-child {
+    text-align: right;
+}
+#totals-box button {
+    background-color: #ff4278;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+#charity-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}

@@ -29,7 +29,7 @@ class AboutView(TemplateView):
 class HelpView(TemplateView):
     template_name = 'shop/help.html'
 
-class CartView(TemplateView):
+class CartPageView(TemplateView):
     template_name = 'shop/cart.html'
 
 # --- Product ViewSet (For listing products) ---

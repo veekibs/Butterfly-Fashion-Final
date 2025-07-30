@@ -24,7 +24,7 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
   
   <section id="header">
     <a href="{% url 'home' %}"><img src="{% static 'shop/images/logo/butterflylogo.png' %}" class="logo" alt="butterfly fashion logo"></a>
@@ -41,7 +41,7 @@
         <li class="{% if page_name == 'blog' %}active{% endif %}"><a href="{% url 'blog' %}">blog</a></li>
         <li class="{% if page_name == 'about' %}active{% endif %}"><a href="{% url 'about' %}">about</a></li>
         <li class="{% if page_name == 'help' %}active{% endif %}"><a href="{% url 'help' %}">help</a></li>
-        <li><a class="lecart" href="#"><ion-icon name="bag-handle-outline"></ion-icon><span id="cart-count">0</span></a></li>
+        <li><a class="lecart" href="{% url 'cart' %}"><ion-icon name="bag-handle-outline"></ion-icon><span id="cart-count">0</span></a></li>
         </ul>
     </div>
   </section>
@@ -67,7 +67,7 @@
     <div class="col">
       <h4>my account</h4>
       <a href="#">sign in</a>
-      <a href="#">view cart</a>
+      <a href="{% url 'cart' %}">view cart</a>
       <a href="#">my wishlist</a>
     </div>
     <div class="copyright">
