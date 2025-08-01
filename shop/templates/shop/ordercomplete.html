@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Order Confirmation | Butterfly Fashion{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'shop/css/ordercomplete.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content %}
+<section id="landing"></section>
+
+<section id="breadcrumb">
+  <ul>
+    <li><a>Shopping Bag</a></li>
+    <li><a>Place Order</a></li>
+    <li><a>Pay</a></li>
+    <li><a href="#"><strong>Order Complete</strong></a></li>
+  </ul>
+</section>
+
+<section id="confirmation">
+  <h2>Thank You For Your Order!</h2>
+  <h3>A confirmation has been sent to your email.</h3>
+  <p>Your donation is in safe hands!</p>
+  <a href="{% url 'new-arrivals' %}">
+    <button>Shop The Latest Trends!</button>
+  </a>
+</section>
+
+{% endblock %}

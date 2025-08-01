@@ -3,8 +3,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from .models import Cart, CartItem, Product
-from .serializers import CartSerializer, ProductSerializer
+from .models import Cart, CartItem, Product, OrderItem
+from .serializers import CartSerializer, ProductSerializer, OrderSerializer
 
 # === TEMPLATE VIEWS (for rendering HTML pages) ======================================
 
@@ -31,6 +31,12 @@ class HelpView(TemplateView):
 
 class CartPageView(TemplateView):
     template_name = 'shop/cart.html'
+
+class CheckoutPageView(TemplateView):
+    template_name = 'shop/checkout.html'
+
+class OrderCompleteView(TemplateView):
+    template_name = 'shop/ordercomplete.html'
 
 # --- Product ViewSet (For listing products) ---
 # A ReadOnlyModelViewSet is a simple way to allow 'read-only' access to the product list
@@ -109,3 +115,36 @@ class RemoveFromCartView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except CartItem.DoesNotExist:
             return Response({'error': 'Cart item not found in your cart'}, status=status.HTTP_404_NOT_FOUND)
+        
+class CheckoutView(APIView):
+    """View to handle the final checkout process."""
+    def post(self, request, *args, **kwargs):
+        cart = get_cart(request)
+        if not cart.items.exists():
+            return Response({'error': 'Your cart is empty.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Use the data from the request to create a serializer instance
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            # If the form data is valid, create the order
+            order = serializer.save()
+
+            # Move items from the cart to the new order
+            for item in cart.items.all():
+                OrderItem.objects.create(
+                    order=order,
+                    product=item.product,
+                    price=item.product.price,
+
+                    quantity=item.quantity
+                )
+            
+            # Delete the old cart
+            cart.delete()
+            # Clear the cart_id from the session
+            request.session.pop('cart_id', None)
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        # If the form data is invalid, return the errors
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

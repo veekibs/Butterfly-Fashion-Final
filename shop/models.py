@@ -1,5 +1,3 @@
-# in shop/models.py
-
 from django.db import models
 import uuid
 
@@ -72,3 +70,29 @@ class CartItem(models.Model):
     # Creates a descriptive name for the cart item instance
     def __str__(self):
         return f"{self.quantity} of {self.product.name}"
+    
+# === ORDER MODELS =================================================================
+
+# Represents a completed customer order
+class Order(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    postcode = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    paid = models.BooleanField(default=False) # We can use this later for payment processing
+
+    def __str__(self):
+        return f"Order {self.id}"
+
+# Represents a single product line within a completed Order
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey('Product', on_delete=models.PROTECT) # Don't delete a product if it's in an order
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return str(self.id)

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from shop.views import HomeView, NewArrivalsView, PreteensView, TeensView, BlogView, AboutView, HelpView, CartPageView
+from shop.views import HomeView, NewArrivalsView, PreteensView, TeensView, BlogView, AboutView, HelpView, CartPageView, CheckoutPageView, OrderCompleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +14,8 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('help/', HelpView.as_view(), name='help'),
     path('cart/', CartPageView.as_view(), name='cart'),
+    path('checkout/', CheckoutPageView.as_view(), name='checkout-page'),
+    path('order-complete/', OrderCompleteView.as_view(), name='order-complete'),
 
     path('api/', include('shop.urls')),
 ]
