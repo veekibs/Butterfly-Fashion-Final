@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProductViewSet, CartView, AddToCartView, RemoveFromCartView, CheckoutView
+from .views import ProductViewSet, CartView, AddToCartView, RemoveFromCartView, CheckoutView, CreateAccountView
 
 # The router handles the simple product list view
 router = DefaultRouter()
@@ -12,6 +12,7 @@ urlpatterns = [
     path('cart/', CartView.as_view(), name='cart-view'),
     path('cart/add/', AddToCartView.as_view(), name='cart-add'),
     path('cart/remove/', RemoveFromCartView.as_view(), name='cart-remove'),
-    # Add the path for the checkout API endpoint 
+    # Added the path for the checkout API endpoint 
     path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('create-account/', CreateAccountView.as_view(), name='create-account'),
 ]
