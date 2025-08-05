@@ -1,7 +1,7 @@
 
-/* === PAGE-SPECIFIC BANNER STYLE =================================== */
+/*  PAGE-SPECIFIC BANNER STYLE  */
 #landing {
-  background-image: url("../images/blog/banner.png");
+  background-image: url("../images/blog/girl-talk.jpg");
   height: 60vh; /* Reduced height for a more balanced look */
   width: 100%;
   background-size: cover;
@@ -26,7 +26,7 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
-/* === BLOG-SPECIFIC ELEMENTS ======================================= */
+/*  BLOG-SPECIFIC ELEMENTS  */
 
 /* --- Post Filter --- */
 .post-filter {
@@ -38,16 +38,18 @@
 }
 
 .filter-item {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 8px 15px;
-  border-radius: 4px;
+  padding: 8px 20px;
+  border-radius: 50px;
   transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
 }
 
 .filter-item:hover, .active-filter {
-  background-color: #ff4278;
+  background-color: #FADADD;
+  border: 1px solid #FADADD;
   color: white;
 }
 
@@ -85,7 +87,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #ff4278;
+  color: #f0c2c2;
   margin-top: 10px;
 }
 

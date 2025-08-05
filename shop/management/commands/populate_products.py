@@ -1,76 +1,484 @@
 from django.core.management.base import BaseCommand
-from shop.models import Product
+# Import all the models to clear
+from shop.models import Product, Order, OrderItem 
 
 class Command(BaseCommand):
     help = 'Populates the database with a list of products'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write('Deleting existing products...')
+        self.stdout.write('Deleting existing data...')
+        OrderItem.objects.all().delete()
+        Order.objects.all().delete()
         Product.objects.all().delete()
+        self.stdout.write('Existing data deleted.')
 
         products_data = [
-            # Preteen Tops 
-            {"name": "floral & slogan graphic drawstring thermal lined hoodie", "price": 12, "image_url": "shop/images/clothes/blue hoodie.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "buffalo plaid zip up dual pocket hooded teddy jacket", "price": 20, "image_url": "shop/images/clothes/teddy front.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "letter print striped trim drop shoulder sweatshirt dress", "price": 15, "image_url": "shop/images/clothes/brown.jpg", "category": "preteen", "sub_category": "top"}, # Was dress
-            {"name": "panda & heart embroidery drop shoulder teddy jacket", "price": 21, "image_url": "shop/images/clothes/panda jacket.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "japanese letter & figure graphic hoodie dress", "price": 15, "image_url": "shop/images/clothes/anime.jpg", "category": "preteen", "sub_category": "top"}, # Was dress
-            {"name": "letter graphic kangaroo pocket drawstring thermal hoodie", "price": 14, "image_url": "shop/images/clothes/cool.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "high neck solid tee", "price": 5, "image_url": "shop/images/clothes/turtleneck.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "puff sleeve zip up dress", "price": 12, "image_url": "shop/images/clothes/puff.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True}, # Was dress
-            {"name": "striped & floral patched lettuce trim tee", "price": 7, "image_url": "shop/images/clothes/flopo.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "plaid & letter graphic drop shoulder shirt", "price": 16, "image_url": "shop/images/clothes/greenplaid.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "colourblock raglan tee", "price": 11, "image_url": "shop/images/clothes/bp.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "turtleneck lantern sleeve sweater", "price": 14, "image_url": "shop/images/clothes/sweater.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "skull & floral print drop shoulder drawstring thermal costume hoodie", "price": 13, "image_url": "shop/images/clothes/shood.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "ditsy floral print frill trim cami top", "price": 11, "image_url": "shop/images/clothes/ditsy.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "2 in 1 graphic printed tee", "price": 7, "image_url": "shop/images/clothes/animegal.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "floral & letter graphic drop shoulder zip up hoodie", "price": 12, "image_url": "shop/images/clothes/ghood.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "mock neck crisscross hem tee", "price": 7, "image_url": "shop/images/clothes/smile.jpg", "category": "preteen", "sub_category": "top"},
-            {"name": "butterfly print cami top & zip up hoodie & sweatpants", "price": 26, "image_url": "shop/images/clothes/cami set.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "camo print drop shoulder pullover & leggings", "price": 14, "image_url": "shop/images/clothes/army.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "v neck ribbed knit dress with belt", "price": 11, "image_url": "shop/images/clothes/dress.jpg", "category": "preteen", "sub_category": "top", "is_new_arrival": True}, # Was dress
+            # PRETEEN TOPS
+            # light pink beaded t-shirt
+            {
+                "name": "light pink beaded t-shirt",
+                "price": 13,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/beaded-tee-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/beaded-tee-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # yellow pretezel oversized graphic print t-shirt
+            {
+                "name": "yellow pretezel oversized graphic print t-shirt",
+                "price": 13,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/yellow-pretz-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/yellow-pretz-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # light blue oversized cotton disney lilo and stitch t-shirt
+            {
+                "name": "light blue oversized cotton disney lilo and stitch t-shirt",
+                "price": 18,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/lilo-stitch-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/lilo-stitch-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            # pink ditsy shirred blouse
+            {
+                "name": "pink ditsy shirred blouse",
+                "price": 14,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/ditsy-pink-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/ditsy-pink-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # white oversized olivia rodrigo t-shirt
+            {
+                "name": "white oversized olivia rodrigo t-shirt",
+                "price": 17,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/olivia-rodrigo-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/olivia-rodrigo-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": True
+            },
+            # purple nirvana t-shirt
+            {
+                "name": "purple nirvana t-shirt",
+                "price": 13,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/nirvana-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/nirvana-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # blue and ecru stripe long sleeve rugby top
+            {
+                "name": "blue and ecru stripe long sleeve rugby top",
+                "price": 15,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/blue-rugby-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/blue-rugby-model.jpg",
+                "category": "preteen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+
+            #-------------------------------------------------------------------------------
+
+            # PRETEENS BOTTOMS
+            # black jersey shorts
+            {
+                "name": "black jersey shorts",
+                "price": 8,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/black-shorts-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/black-shorts-model.jpg",
+                "category": "preteen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+            # mid blue pull on embroidered barrel jeans 
+            {
+                "name": "mid blue pull on embroidered barrel jeans",
+                "price": 23,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/pull-jeans-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/pull-jeans-model.jpg",
+                "category": "preteen",
+                "sub_category": "bottoms",
+                "is_new_arrival": True
+            },
+            # light blue cotton denim skirt
+            {
+                "name": "light blue cotton denim skirt",
+                "price": 16,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/denim-skirt-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/denim-skirt-model.jpg",
+                "category": "preteen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            # blue wide leg joggers
+            {
+                "name": "blue wide leg joggers",
+                "price": 15,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/blue-joggers-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/blue-joggers-model.jpg",
+                "category": "preteen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+            # black side stripe wide leg joggers
+            {
+                "name": "black side stripe wide leg joggers",
+                "price": 15,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/black-stripe-joggers-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/black-stripe-joggers-model.jpg",
+                "category": "preteen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+
+            #-------------------------------------------------------------------------------
             
-            # Preteen Bottoms
-            {"name": "letter & floral print jeans", "price": 19, "image_url": "shop/images/clothes/flower jeans.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "brown plaid print mini skirt", "price": 5, "image_url": "shop/images/clothes/skirt.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "sun & moon print high waist jeans", "price": 24, "image_url": "shop/images/clothes/jeans.jpg", "category": "preteen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "mock neck letter embroidery top & trousers", "price": 25, "image_url": "shop/images/clothes/brownie.jpg", "category": "preteen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "buckle strap flap pocket cargo pants", "price": 13, "image_url": "shop/images/clothes/cargo.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "butterfly print sweatpants", "price": 9, "image_url": "shop/images/clothes/sweat.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "knot front cargo trousers", "price": 13, "image_url": "shop/images/clothes/poople.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "camo print straight leg jeans", "price": 21, "image_url": "shop/images/clothes/camosplit.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "2pcs contrast tape pleated skirt", "price": 20, "image_url": "shop/images/clothes/yuigoh.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "heart print jeans", "price": 21, "image_url": "shop/images/clothes/heartprintj.jpg", "category": "preteen", "sub_category": "bottom"},
-            {"name": "allover heart print flare leg pants", "price": 8, "image_url": "shop/images/clothes/heartflare.jpg", "category": "preteen", "sub_category": "bottom"},
+            # PRETEEN DRESSES
+            # pink ditsy shirred sleeve dress
+            {
+                "name": "pink ditsy shirred sleeve dress",
+                "price": 18,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/pink-dress-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/pink-dress-model.jpg",
+                "category": "preteen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
+            # ecru white floral print ruffle dress
+            {
+                "name": "ecru white floral print ruffle dress",
+                "price": 29,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/ecru-ruffle-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/ecru-ruffle-model.jpg",
+                "category": "preteen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
+            # blue and pink stripe rib racer summer dress
+            {
+                "name": "blue and pink stripe rib racer summer dress",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/blue-pink-stripe-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/blue-pink-stripe-model.jpg",
+                "category": "preteen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
+            # red paisley frill summer dress 
+            {
+                "name": "red paisley frill summer dress",
+                "price": 17,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/red-frill-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/red-frill-model.jpg",
+                "category": "preteen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
 
-            # Teen Tops
-            {"name": "letter patched striped trim cricket sweater vest", "price": 11, "image_url": "shop/images/clothes/vest.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "letter graphic contrast collar thermal lined sweatshirt", "price": 17, "image_url": "shop/images/clothes/blokecore.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "shawl collar contrast teddy PU leather coat", "price": 40, "image_url": "shop/images/clothes/shawl.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "drop shoulder 3D ear teddy hoodie", "price": 11, "image_url": "shop/images/clothes/teddy.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "fuzzy trim open front coat", "price": 35, "image_url": "shop/images/clothes/fuzzy.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "checkered & heart pattern sweater vest without tee", "price": 10, "image_url": "shop/images/clothes/vestie.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "figure graphic drop shoulder zip up drawstring hoodie", "price": 17, "image_url": "shop/images/clothes/hoodie.jpg", "category": "teen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "letter graphic contrast collar crop tee", "price": 15, "image_url": "shop/images/clothes/croptee.jpg", "category": "teen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "letter graphic drop shoulder tee", "price": 11, "image_url": "shop/images/clothes/tee.jpg", "category": "teen", "sub_category": "top", "is_new_arrival": True},
-            {"name": "eyelet embroidery ruffle trim tie backless top", "price": 7, "image_url": "shop/images/clothes/whiteeye.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "grunge off shoulder ruched crop tee", "price": 8, "image_url": "shop/images/clothes/grunge.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "3pcs solid backless halter top", "price": 15, "image_url": "shop/images/clothes/halter.jpg", "category": "teen", "sub_category": "top"},
-            {"name": "scoop neck bell sleeve crop tee", "price": 8, "image_url": "shop/images/clothes/black.jpg", "category": "teen", "sub_category": "top"},
+            #-------------------------------------------------------------------------------
+            
+            # PRETEEN SETS/CO-ORDS
+            # blue slogan cotton t-shirt and short set
+            {
+                "name": "blue slogan cotton t-shirt and short set",
+                "price": 20,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/blue-slogan-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/blue-slogan-model.jpg",
+                "category": "preteen",
+                "sub_category": "sets",
+                "is_new_arrival": True
+            },
+            # animal print shirt and pleated skirt set
+            {
+                "name": "animal print shirt and pleated skirt set",
+                "price": 36,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/animal-print-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/animal-print-model.jpg",
+                "category": "preteen",
+                "sub_category": "sets",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            
+            # ---- TEENS ---------------------
+            # TEEN TOPS
+            # matcha green open stitch cropped jumper
+            {
+                "name": "matcha green open stitch cropped jumper",
+                "price": 13,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/crop-jumper-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/crop-jumper-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": True
+            },
+            # grey ariana grande oversized t-shirt
+            {
+                "name": "grey ariana grande oversized t-shirt",
+                "price": 14,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/ariana-grande-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/ariana-grande-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # brown knitted pullover jumper
+            {
+                "name": "brown knitted pullover jumper",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/brown-jumper-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/brown-jumper-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # black faux leather biker jacket
+            {
+                "name": "black faux leather biker jacket",
+                "price": 24,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/biker-jacket-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/biker-jacket-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            # burgundy funnel neck windbreaker jacket
+            {
+                "name": "burgundy funnel neck windbreaker jacket",
+                "price": 15,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/windbreaker-jacket-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/windbreaker-jacket-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": True
+            },
+            # beige contrast collar barn jacket
+            {
+                "name": "beige contrast collar barn jacket",
+                "price": 21,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/barn-jacket-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/barn-jacket-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            # brown gingham check blouse
+            {
+                "name": "brown gingham check blouse",
+                "price": 11,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/brown-blouse-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/brown-blouse-model.jpg",
+                "category": "teen",
+                "sub_category": "tops",
+                "is_new_arrival": False
+            },
+            
+            #-------------------------------------------------------------------------------
 
-            # Teen Bottoms
-            {"name": "bear pattern teddy trousers", "price": 18, "image_url": "shop/images/clothes/lol.jpg", "category": "teen", "sub_category": "bottom"},
-            {"name": "floral print straight leg jeans", "price": 15, "image_url": "shop/images/clothes/floral.jpg", "category": "teen", "sub_category": "bottom"},
-            {"name": "star print contrast tape side sweatpants", "price": 16, "image_url": "shop/images/clothes/star sweatpants.jpg", "category": "teen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "high waist tie front flap pocket cargo jeans", "price": 25, "image_url": "shop/images/clothes/cjeans.jpg", "category": "teen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "letter patched striped trim bomber jacket & sweatpants", "price": 27, "image_url": "shop/images/clothes/bomber jacket.jpg", "category": "teen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "ripped cut out straight leg jeans", "price": 24, "image_url": "shop/images/clothes/rjeans.jpg", "category": "teen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "solid ribbed knit crop knit top & knit leggings & duster cardigan", "price": 30, "image_url": "shop/images/clothes/justbrown.jpg", "category": "teen", "sub_category": "bottom", "is_new_arrival": True},
-            {"name": "high waist split thigh skirt", "price": 9, "image_url": "shop/images/clothes/skirtt.jpg", "category": "teen", "sub_category": "bottom"},
-            {"name": "zip back pleated skirt", "price": 11, "image_url": "shop/images/clothes/pskirt.jpg", "category": "teen", "sub_category": "bottom"},
-            {"name": "elastic waist wide leg trousers", "price": 12, "image_url": "shop/images/clothes/wideleg.jpg", "category": "teen", "sub_category": "bottom"},
-            {"name": "flap pocket side chain detail buckled belted cargo trousers", "price": 17, "image_url": "shop/images/clothes/gothtro.jpg", "category": "teen", "sub_category": "bottom"},
+            # TEEN BOTTOMS
+            # grey wide leg ripped skater jeans
+            {
+                "name": "grey wide leg ripped skater jeans",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/grey-skater-jeans-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/grey-skater-jeans-model.jpg",
+                "category": "teen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            # brown wide leg graphic joggers
+            {
+                "name": "brown wide leg graphic joggers",
+                "price": 11,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/graphic-joggers-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/graphic-joggers-model.jpg",
+                "category": "teen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+            # light blue wide leg jeans
+            {
+                "name": "light blue wide leg jeans",
+                "price": 16,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/light-blue-jeans-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/light-blue-jeans-model.jpg",
+                "category": "teen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+            # charcoal pleated pinstripe skirt
+            {
+                "name": "charcoal pleated pinstripe skirt",
+                "price": 13,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/emo-skirt-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/emo-skirt-model.jpg",
+                "category": "teen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+            # grey pleated wide leg jeans
+            {
+                "name": "grey pleated wide leg jeans",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/grey-pleated-jeans-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/grey-pleated-jeans-model.jpg",
+                "category": "teen",
+                "sub_category": "bottoms",
+                "is_new_arrival": False
+            },
+
+            #-------------------------------------------------------------------------------
+
+            # TEENS DRESSES
+            # white smocked frill-trimmed dress
+            {
+                "name": "white smocked frill-trimmed dress",
+                "price": 15,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/white-smock-dress-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/white-smock-dress-model.jpg",
+                "category": "teen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
+            # cream crotchet look dress
+            {
+                "name": "cream crotchet look dress",
+                "price": 16,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/crotchet-dress-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/crotchet-dress-model.jpg",
+                "category": "teen",
+                "sub_category": "dresses",
+                "is_new_arrival": True
+            },
+            # cream tennis dress
+            {
+                "name": "cream tennis dress",
+                "price": 21,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/tennis-dress-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/tennis-dress-model.jpg",
+                "category": "teen",
+                "sub_category": "dresses",
+                "is_new_arrival": False,
+                "is_featured": True
+            },
+            # white and blue floral smocked strappy dress
+            {
+                "name": "white and blue floral smocked strappy dress",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/floral-dress-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/floral-dress-model.jpg",
+                "category": "teen",
+                "sub_category": "dresses",
+                "is_new_arrival": False
+            },
+
+            #-------------------------------------------------------------------------------
+
+            # TEENS SETS/CO-ORDS
+            # black and white stripe shirred blouse and shorts set
+            {
+                "name": "black and white stripe shirred blouse and shorts set",
+                "price": 12,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/stripe-set-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/stripe-set-model.jpg",
+                "category": "teen",
+                "sub_category": "sets",
+                "is_new_arrival": False
+            },
+            # cream two-piece crotchet look set
+            {
+                "name": "cream two-piece crotchet look set",
+                "price": 27,
+                # This is the plain background shot
+                "image_url": "shop/images/clothes/crotchet-look-plain.jpg", 
+                # This is the new field for the model shot
+                "model_image_url": "shop/images/clothes/crotchet-look-model.jpg",
+                "category": "teen",
+                "sub_category": "sets",
+                "is_new_arrival": False
+            },
         ]
 
         # Use a set to keep track of names already added to avoid duplicates

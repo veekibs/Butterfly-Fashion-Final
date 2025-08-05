@@ -1,56 +1,107 @@
-/* === HOMEPAGE-SPECIFIC STYLES ===================================== */
-
-/* --- Free Shipping Banner --- */
-#shipping-free {
-  background-color: #fde2e8;
-  text-align: center;
-  padding: 15px 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.shipping-free-icon {
-  font-size: 2.1rem;
-  margin-right: 0.7rem;
-}
-
-.shipping-free-text {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-  text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
-}
-
-/* --- Main Landing Image --- */
-#landing {
-  background-image: url('../images/banners/landingpage.png');
+/* --- HERO SECTION --- */
+.hero {
   height: 90vh;
   width: 100%;
+  background-image: url('../images/banners/hero-background.jpg');
   background-size: cover;
   background-position: center;
-}
-
-/* --- "Shop Now" Banner --- */
-#banner {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url('../images/banners/newarrivals.png');
-  width: 100%;
-  height: 60vh;
-  background-size: cover;
-  background-position: center;
-  margin: 40px 0;
-  padding-top: 150px; 
+  padding: 0 20px;
+  color: white;
+}
+.hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 5vw, 4.5rem); text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); }
+.hero p { font-family: var(--font-body); font-size: 1.2rem; margin-top: 10px; color: #f9f9f9; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); }
+.hero .hero-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 35px;
+  background-color: var(--color-accent);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.hero .hero-button:hover { background-color: var(--color-accent-dark); transform: scale(1.05); }
+
+/* --- OUR IMPACT SECTION --- */
+.impact-section {
+  text-align: center;
+  padding: 100px 40px;
+  position: relative; /* Needed for the overlay */
+  color: white; /* Change text to white for contrast */
 }
 
-#banner button:hover {
-  background: #ff4278;
-  color: #fff;
+/* This pseudo-element creates a dark overlay */
+.impact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/banners/hero-ourimpact.jpg'); 
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5); /* Darkens the image */
+    z-index: -1;
 }
+
+.impact-section h2 { 
+    font-size: 2.5rem; 
+    margin-bottom: 15px; 
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+.impact-section p { 
+    max-width: 600px; 
+    margin: 0 auto 25px auto; 
+    font-size: 1.1rem; 
+    color: white; /* Change text to white */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+.learn-more-link { 
+    color: white; /* Change link to white */
+    text-decoration: underline; 
+    font-weight: 600; 
+}
+.learn-more-link:hover {
+    color: #f0c2c2;
+    text-decoration: none;
+}
+
+/* --- SOCIAL PROOF SECTION --- */
+.social-proof-section {
+  text-align: center;
+  padding: 100px 80px;
+}
+.social-proof-section h2 { font-size: 2.5rem; margin-bottom: 40px; }
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.social-item { position: relative; overflow: hidden; border-radius: 8px; }
+.social-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.social-item:hover img { transform: scale(1.1); }
+.social-item .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+.social-item:hover .overlay { opacity: 1; transform: translateY(0); }
 
 /* --- Popup UX Element --- */
 #popup {
@@ -88,16 +139,10 @@
   padding: 0 20px; 
   border-radius: 4px;
   border: none; 
-  background-color: #ff4278; 
+  background-color: var(--color-accent); 
   color: #fff;
   cursor: pointer;
   width: 100%;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#popup button:hover {
-  background-color: #e03a69;
-  transform: scale(1.03);
 }
 
 #popup-arrow-container { 
@@ -109,39 +154,8 @@
 
 .arrow-up, .arrow-down {
   font-size: 30px;
-  color: #000;
+  color: var(--color-text);
 }
 
 #popup:not(.minimized) .arrow-up { display: none; }
 #popup.minimized .arrow-down { display: none; }
-
-/* === HOMEPAGE RESPONSIVE STYLES =================================== */
-
-@media (max-width: 992px) {
-  #landing {
-    height: 60vh; /* Shorter banner on tablets */
-  }
-  #banner {
-    height: 40vh;
-    padding-top: 50px; /* Less padding on smaller banners */
-  }
-  .shipping-free-text {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 600px) {
-  #landing {
-    height: 50vh; /* Even shorter on mobile */
-  }
-  #banner {
-    height: 30vh;
-    padding: 20px; /* Adjust padding for mobile */
-    margin: 20px 0;
-  }
-  #popup {
-    width: 100%; /* Make popup full-width on mobile */
-    right: 0;
-    border-radius: 0;
-  }
-}

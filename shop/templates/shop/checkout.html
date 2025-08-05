@@ -1,22 +1,23 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}Checkout | Butterfly Fashion{% endblock %}
+{% block title %}checkout | butterfly fashion,{% endblock %}
 
 {% block styles %}
   <link href="{% static 'shop/css/checkout.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{% block page_name %}cart{% endblock %}
 
 {% block content %}
 <section id="landing"></section>
 
 <section id="breadcrumb">
   <ul>
-    <li><a href="{% url 'cart' %}">Shopping Bag</a></li>
-    <li><a href="#"><strong>Place Order</strong></a></li>
-    <li><a href="#">Pay</a></li>
-    <li><a href="#">Order Complete</a></li>
+    <li><a href="{% url 'cart' %}">shopping bag</a></li>
+    <li><a href="#"><strong>place order</strong></a></li>
+    <li><a href="#">pay</a></li>
+    <li><a href="#">order complete</a></li>
   </ul>
 </section>
 
@@ -24,45 +25,42 @@
 
     <div class="shipping-address">
         <form id="checkout-form">
-            <h2>Shipping Address</h2>
+            <h2>shipping address</h2>
             <div class="form-row">
-                <label for="fname">First Name*</label>
+                <label for="fname">first name*</label>
                 <input type="text" id="fname" name="fname" required>
             </div>
             <div class="form-row">
-                <label for="lname">Last Name*</label>
+                <label for="lname">last name*</label>
                 <input type="text" id="lname" name="lname" required>
             </div>
             <div class="form-row">
-                <label for="email">Email*</label>
+                <label for="email">email*</label>
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="form-row">
-                <label for="address1">Address Line 1*</label>
+                <label for="address1">address line 1*</label>
                 <input type="text" id="address1" name="address1" required>
             </div>
             <div class="form-row">
-                <label for="city">City*</label>
+                <label for="city">city*</label>
                 <input type="text" id="city" name="city" required>
             </div>
             <div class="form-row">
-                <label for="postcode">Postcode*</label>
+                <label for="postcode">postcode*</label>
                 <input type="text" id="postcode" name="postcode" required>
             </div>
-        </form>
-    </div>
 
-    <div class="checkout-container">
-    <div class="shipping-address">
-            <hr style="margin: 30px 0;">
-            <h2>Payment Details (Proof of Concept)</h2>
+            <hr style="margin: 40px 0;">
+
+            <h2>payment details (proof of concept)</h2>
             <div class="form-row">
-                <label for="card-number">Card Number</label>
+                <label for="card-number">card number</label>
                 <input type="text" id="card-number" placeholder="4242 4242 4242 4242">
             </div>
             <div class="form-row" style="display: flex; gap: 20px;">
                 <div style="flex: 1;">
-                    <label for="expiry">Expiry (MM/YY)</label>
+                    <label for="expiry">expiry (MM/YY)</label>
                     <input type="text" id="expiry" placeholder="12/26">
                 </div>
                 <div style="flex: 1;">
@@ -74,19 +72,22 @@
     </div>
 
     <div class="order-summary">
-        <h2>Order Summary</h2>
+        <h2>order summary</h2>
         <table>
             <tbody id="checkout-summary-body">
-                <tr><td>Loading summary...</td></tr>
+                <tr><td>loading...</td></tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td><strong>Total</strong></td>
+                    <td><strong>total</strong></td>
                     <td style="text-align:right;"><strong>£<span id="summary-total">0.00</span></strong></td>
                 </tr>
             </tfoot>
         </table>
-        <button type="submit" form="checkout-form">Place Order</button>
+        
+        <div id="charity-donation-display" style="display: none;"></div>
+        
+        <button type="submit" form="checkout-form">place order</button>
     </div>
 </div>
 {% endblock %}

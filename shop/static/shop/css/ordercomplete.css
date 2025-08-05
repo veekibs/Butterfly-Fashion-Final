@@ -1,7 +1,7 @@
 /* --- Page Banner --- */
 #landing {
-  background-image: url("../images/banners/thankyou.jpg");
-  height: 90vh;
+  background-image: url("../images/banners/thank-you.jpg");
+  height: 60vh;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -13,67 +13,79 @@
   justify-content: center;
   align-items: center;
   padding: 40px 0;
+  font-family: var(--font-body);
 }
 #breadcrumb ul { list-style: none; padding: 0; margin: 0; }
 #breadcrumb li { display: inline-block; }
 #breadcrumb li a {
-  color: #949494;
+  color: #999;
   text-decoration: none;
   position: relative;
   padding: 0 20px;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 #breadcrumb li:last-child a {
-  color: black;
-  font-weight: bold;
-  font-size: 1.5rem;
+  color: var(--color-text);
+  font-family: var(--font-heading);
 }
-#breadcrumb li a::before {
-  content: ">";
-  position: absolute;
-  left: 0;
-}
-#breadcrumb li:first-child a::before {
-  content: none;
-}
+#breadcrumb li a::before { content: ">"; position: absolute; left: 0; }
+#breadcrumb li:first-child a::before { content: none; }
 
-/* --- Confirmation Box --- */
+/* --- Confirmation + Account Creation Box --- */
 #confirmation {
   text-align: center;
   padding: 60px 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background-color: var(--color-subtle);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  width: 80%;
+  width: 90%;
   max-width: 700px;
   margin: 40px auto;
 }
-
 #confirmation h2 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #088178;
+  margin-bottom: 15px;
 }
 #confirmation h3 {
+  font-family: var(--font-body);
   font-size: 1.2rem;
-  font-weight: normal;
-  color: #444;
+  font-weight: 400;
+  color: #555;
 }
-#confirmation p {
-  font-size: 1rem;
-  color: #666;
-  margin-top: 10px;
+#account-creation-section {
+    margin-top: 40px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 30px;
+}
+#account-creation-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+#account-creation-section label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+#account-creation-section input[type="password"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    margin-top: 8px;
 }
 #confirmation button {
-  background: #ff4278;
-  color: white;
+  background-color: var(--color-accent);
+  color: black;
   padding: 15px 30px;
-  border-radius: 4px;
+  border-radius: 50px;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
   margin-top: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 #confirmation button:hover {
-  background-color: #e03a69;
+  background-color: var(--color-accent-dark);
 }

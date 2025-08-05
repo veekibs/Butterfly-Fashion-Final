@@ -3,8 +3,7 @@
 from rest_framework import serializers
 from .models import Product, Cart, CartItem, OrderItem, Order
 
-# ====================================================================================
-# === PRODUCT SERIALIZERS ==========================================================
+# --- PRODUCT SERIALIZERS ---
 
 # This serializer is for the main product list page (e.g., /api/products/)
 class ProductSerializer(serializers.ModelSerializer):
@@ -18,7 +17,7 @@ class SimpleProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name', 'price', 'image_url']
 
-# === CART SERIALIZERS =============================================================
+# --- CART SERIALIZERS ---
 
 # A serializer for the CartItem model
 class CartItemSerializer(serializers.ModelSerializer):
@@ -62,4 +61,4 @@ class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     class Meta:
         model = Order
-        fields = ['id', 'first_name', 'last_name', 'email', 'address', 'city', 'postcode', 'paid', 'items']
+        fields = ['id', 'first_name', 'last_name', 'email', 'address', 'city', 'postcode', 'paid', 'items', 'charity_choice']

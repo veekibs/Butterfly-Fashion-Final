@@ -1,45 +1,60 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}Homepage | Butterfly Fashion{% endblock %}
+{% block title %}home | butterfly fashion.{% endblock %}
 
 {% block styles %}
   <link href="{% static 'shop/css/index.css' %}" rel="stylesheet"/>
 {% endblock %}
 
-
+{% block page_name %}home{% endblock %}
 {% block content %}
 
-<section id="shipping-free">
-  <ion-icon name="airplane-outline" class="shipping-free-icon"></ion-icon>
-  <span class="shipping-free-text">free shipping. forever. our treat! love, butterfly fashion xox</span>
+<section class="hero">
+  <h1>fashion for your evolution.</h1>
+  <p>style that grows with you.</p>
+  <a href="{% url 'new-arrivals' %}" class="hero-button">shop new arrivals</a>
 </section>
 
-<section id="landing"></section>
-
 <section id="fproduct" class="sectionfp">
-  <h2>featured products</h2>
-  <p>winter collection for preteens (11-14yrs)</p>
+  <h2>featured for preteens</h2>
   <div class="fprocontainer">
       </div>
 </section>
 
+<section class="impact-section">
+    <h2>style that makes a difference.</h2>
+    <p>a portion of every purchase supports girls' health and education projects worldwide.</p>
+    <a href="{% url 'about' %}" class="learn-more-link">learn about our impact →</a>
+</section>
+
 <section id="fproductt" class="secfp">
-  <h2>featured products</h2>
-  <p>winter collection for teenagers (15-17yrs)</p>
+  <h2>featured for teens</h2>
   <div class="fpcontainer">
       </div>
 </section>
 
-<section id="banner" class="section-m1">
-  <a href="{% url 'new-arrivals' %}">
-    <button class="normal">shop now</button>
-  </a>
+<section class="social-proof-section">
+    <h2>as seen on our community</h2>
+    <div class="social-grid">
+        <div class="social-item">
+            <img src="{% static 'shop/images/social/social1.jpg' %}" alt="Girl wearing our product">
+            <div class="overlay"><span>biker vibes</span></div>
+        </div>
+        <div class="social-item">
+            <img src="{% static 'shop/images/social/social2.jpg' %}" alt="Girl wearing our product">
+            <div class="overlay"><span>y2k jumper</span></div>
+        </div>
+        <div class="social-item">
+            <img src="{% static 'shop/images/social/social3.jpg' %}" alt="Girl wearing our product">
+            <div class="overlay"><span>linen dresses</span></div>
+        </div>
+    </div>
 </section>
 
 <div id="popup">
   <div id="popup-content">
-    <h2><strong>how can we make your experience better?</strong></h2>
+    <h2>how can we make your experience better?</h2>
     <input type="text" placeholder="please type here...">
     <button class="sendbutton">send</button>
   </div>

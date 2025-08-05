@@ -1,5 +1,5 @@
 #na {
-  background-image: url('../images/banners/newarrivals.png');
+  background-image: url('../images/banners/new-arrivals.jpg');
   height: 90vh;
   width: 100%;
   background-size: cover;
@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
 }
 
-/* === NEW ARRIVALS RESPONSIVE STYLES =============================== */
+/* --- NEW ARRIVALS RESPONSIVE STYLES --- */
 
 @media (max-width: 992px) {
   #na {

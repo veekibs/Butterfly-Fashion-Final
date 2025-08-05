@@ -1,6 +1,6 @@
 /* --- Page Banner --- */
 #landing {
-  background-image: url("../images/banners/yourcart.gif");
+  background-image: url("../images/banners/your-cart.jpg");
   height: 60vh;
   width: 100%;
   background-size: cover;
@@ -58,7 +58,7 @@
     vertical-align: middle;
 }
 .table tbody ion-icon {
-    color: #ff4278;
+    color: #000000;
     cursor: pointer;
 }
 
@@ -72,6 +72,7 @@
     width: 48%;
     border: 1px solid #e2e9e1;
     padding: 30px;
+    border-radius: 50px;
 }
 #totals-box table {
     width: 100%;
@@ -85,15 +86,24 @@
     text-align: right;
 }
 #totals-box button {
-    background-color: #ff4278;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
+    background-color: var(--color-accent); /* soft pink */
+    color: var(--color-text); /* Soft black text */
+    padding: 15px 30px;
+    border-radius: 50px;
     font-size: 1rem;
+    font-weight: 600;
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
+    /* This makes the color change smooth */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#totals-box button:hover {
+    /* On hover, change to the darker pink + make the text white */
+    background-color: var(--color-accent-dark);
+    color: white; 
 }
 #charity-select {
     width: 100%;
