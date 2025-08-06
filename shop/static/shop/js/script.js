@@ -1,17 +1,24 @@
 // --- MAIN APP INITIALIZATION & ROUTER ---
 
 /**
- * This is the main entry point. It runs when the HTML document is fully loaded.
+ * This is the main entry point. It runs when the HTML document is FULLY loaded.
  */
 document.addEventListener('DOMContentLoaded', () => {
+    // Always get the initial cart count on every page load
     onLoadCartNumbers(); 
-    setupEventListeners(); // ALWAYS set up global listeners
 
     const page = document.body.dataset.page;
     if (page === 'cart') {
+        // On the cart page, display the cart + then set up its listeners
         displayCart();
-    } else {
+        setupEventListeners();
+    } else if (document.querySelector('.fprocontainer, .fpcontainer')) {
+        // On pages with products, let initializePage handle everything
+        // It will set up its own listeners AFTER the products are loaded
         initializePage();
+    } else {
+        // On simple static pages (like About), just set up the basic listeners
+        setupEventListeners();
     }
 });
 

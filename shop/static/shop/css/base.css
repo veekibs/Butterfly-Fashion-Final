@@ -129,6 +129,13 @@ button.normal:hover {
     margin-left: 5px;
 }
 
+/* This specifically targets the text for the Login/My Account links */
+.header-actions .account-link span {
+    font-size: 0.8rem; /* Matches the 'Our Impact' text size */
+    font-weight: 600;  /* Makes the font thicker */
+    margin-left: 8px;
+}
+
 /* --- Dropdown Styling --- */
 .dropdown-content {
     display: none; /* Hide by default */
@@ -272,4 +279,22 @@ footer a {
     margin-top: 40px;
     color: #777;
     font-size: 0.9rem;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem; /* Matches other action icons */
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    padding: 0;
+}
+.logout-button span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 8px;
+    font-family: var(--font-body);
 }

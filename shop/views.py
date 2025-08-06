@@ -6,6 +6,8 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import Cart, CartItem, Product, OrderItem, Order
 from .serializers import CartSerializer, ProductSerializer, OrderSerializer
 from django.contrib.auth.models import User 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum, F 
 
 # --- TEMPLATE VIEWS (for rendering HTML pages) ---
 
@@ -61,6 +63,26 @@ class OrderCompleteView(TemplateView):
         order_id = self.request.session.get('last_order_id')
         if order_id:
             context['order_id'] = order_id
+        return context
+    
+class RegisterPageView(TemplateView):
+    template_name = 'shop/register.html'
+
+class LoginPageView(TemplateView):
+    template_name = 'shop/login.html'
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'shop/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Fetch orders for the current user, calculating the total for each
+        orders = Order.objects.filter(user=self.request.user).annotate(
+            total_cost=Sum(F('items__quantity') * F('items__price'))
+        ).order_by('-created_at')
+        
+        context['orders'] = orders
+        context['page_name'] = 'dashboard'
         return context
 
 # --- API VIEWS ---

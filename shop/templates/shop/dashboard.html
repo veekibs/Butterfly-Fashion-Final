@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}my account | butterfly fashion.{% endblock %}
+{% block styles %}
+  <link href="{% static 'shop/css/dashboard.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block page_name %}dashboard{% endblock %}
+
+{% block content %}
+
+<section id="dash"></section>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>welcome, {{ user.first_name|default:user.username }}!</h1>
+        <p>here you can view your past order history.</p>
+    </div>
+
+    <h2>order history</h2>
+    
+    {% if orders %}
+        <table class="order-history-table">
+            <thead>
+                <tr>
+                    <th>order ID</th>
+                    <th>date</th>
+                    <th>total</th>
+                    <th>items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"d M Y" }}</td>
+                    <td>£{{ order.total_cost|floatformat:2 }}</td>
+                    <td>
+                        <ul style="list-style: none; padding: 0;">
+                        {% for item in order.items.all %}
+                            <li>{{ item.quantity }} x {{ item.product.name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>you have not placed any orders yet.</p>
+    {% endif %} </div>
+{% endblock %}
