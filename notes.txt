@@ -5,10 +5,15 @@ project scratchpad!!!!
 TODOs:
 - rebuild the flipping backend ugh AND FRONTEND DONT FORGET ✅
 - put the server side cart in cos local storage SUCKS ✅ 
-- optional account creation? :)
-- AESTHETIC REVAMPPPPP
+- optional account creation? :) ✅
+- AESTHETIC REVAMPPPPP ✅
 - pls fix the mobile responsiveness omd it looks awful: add a hamburger yum!
 - testing? we doing selenium this time???! erghhhhghg
 
 --- --- --- --- --- --- --- ---
 
+future feature ideas wohooooo (product manager in the making??? hahaha)
+
+- product detail pages (click a product -> land on its own page with size/colour options, reviews, etc...) because hovering is CUTE but not enough smh
+- wishlist feature ONLY FOR LOGGED IN USERS soz (save items to come back later - cos they WILL come back xoxo)
+- better filtering system (instead of that floating spaceship thing from hamburger mobile it comes out from the side like a proper website ennit)
