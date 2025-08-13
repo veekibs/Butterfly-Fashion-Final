@@ -1,18 +1,30 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag #}
 {% load static %}
+
+{# This block defines the unique title for the browser tab #}
 {% block title %}register | butterfly fashion.{% endblock %}
+
+{# This block links to the page-specific stylesheet for user authentication pages #}
 {% block styles %}
   <link href="{% static 'shop/css/users.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# The main hero banner section for the registration page #}
 <section id="landingg"></section>
 
+{# The main container that centers the registration form on the page #}
 <div class="auth-container">
     <div class="auth-form">
         <h1>create account</h1>
+        {# The registration form: its submission is handled by auth.js #}
         <form id="register-form">
+            {# Django's Cross-Site Request Forgery protection token which is essential for security! #}
             {% csrf_token %}
             <div class="form-group">
                 <label for="first_name">first name</label>
@@ -32,6 +44,7 @@
             </div>
             <button type="submit" class="auth-button">register</button>
         </form>
+        {# A link to switch to the login page #}
         <p class="auth-switch">already have an account? <a href="{% url 'login-page' %}">log in</a></p>
     </div>
 </div>

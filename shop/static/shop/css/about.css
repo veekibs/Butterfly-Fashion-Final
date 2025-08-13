@@ -1,24 +1,27 @@
+/* Basic reset for the page to enable full-height scrolling */
 html, body {
   height: 100%;
   margin: 0;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Enables smooth scrolling between sections */
 }
 
+/* This container enables the 'snap-to' scrolling effect */
 .snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: hidden; /* hide native scroll so user controls it */
-  height: 100vh;
+  scroll-snap-type: y mandatory; /* Forces the viewport to snap to the start of each section on the Y-axis */
+  overflow-y: hidden; /* Hide native scroll so user controls it */
+  height: 100vh; /* Set the container to the full height of the viewport */
 }
 
+/* This is the shared style for each full-screen image section */
 .about-banner {
-  height: 100vh;
+  height: 100vh; /* Each section takes up the full viewport height */
   width: 100%;
   background-size: cover;
   background-position: center;
-  scroll-snap-align: start;
+  scroll-snap-align: start; /* Each banner is a snap point */
 }
 
-/* images */
+/* --- Specific background images for each banner section --- */
 #aboutus { background-image: url('../images/about/1.jpg'); }
 #aboutuss { background-image: url('../images/about/2.jpg'); }
 #au { background-image: url('../images/about/3.jpg'); }
@@ -30,8 +33,10 @@ html, body {
 #abussie { background-image: url('../images/about/9.jpg'); }
 #abussss { background-image: url('../images/about/10.jpg'); }
 
+/* Responsive adjustments for smaller screens */
 @media screen and (max-width: 768px) {
   .about-banner {
+    /* Ensures banners still take up the full height on mobile */
     height: 100vh;
   }
 }

@@ -1,27 +1,31 @@
 /* --- Page Banner --- */
+/* A shorter + decorative banner for the top of the dashboard page */
 #dash {
   background-image: url("../images/banners/user-dashboard.jpg");
-  height: 50vh; /* A slightly shorter banner */
+  height: 50vh;
   width: 100%;
   background-size: cover;
   background-position: center;
 }
 
 /* --- Main Dashboard Container --- */
+/* The main content box that holds the user's information */
 .dashboard-container {
     padding: 40px;
     max-width: 950px;
-    margin: 60px auto;
+    margin: 60px auto; /* Centers the box on the page */
     background-color: var(--color-background);
     border: 1px solid var(--color-border);
-    border-radius: 12px; /* Rounded corners for a softer look */
+    border-radius: 12px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.03);
 }
 
+/* The header section with the "Welcome" message */
 .dashboard-header {
     margin-bottom: 40px;
     padding-bottom: 20px;
-    text-align: center; /* Center the welcome message */
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
 }
 .dashboard-header h1 {
     margin-bottom: 10px;
@@ -32,11 +36,13 @@
 }
 
 /* --- Order History Table --- */
+/* The table that displays the user's past orders */
 .order-history-table {
     width: 100%;
-    border-collapse: collapse; /* Removes space between borders */
+    border-collapse: collapse; /* Removes space between table cell borders */
 }
 
+/* Styling for all table cells (header + body) */
 .order-history-table th, 
 .order-history-table td {
     padding: 20px 15px;
@@ -44,6 +50,7 @@
     border-bottom: 1px solid var(--color-border);
 }
 
+/* Styling specifically for the table header cells (e.g., "Order ID", "Date") */
 .order-history-table th {
     font-family: var(--font-body);
     font-size: 0.8rem;
@@ -52,15 +59,17 @@
     color: #777;
 }
 
+/* Adds a smooth transition for the hover effect on table rows */
 .order-history-table tbody tr {
-    transition: background-color 0.3s ease; /* Smooth transition for hover */
+    transition: background-color 0.3s ease;
 }
 
-/* ⭐ This adds the hover effect to each order row ⭐ */
+/* Adds a subtle grey background when hovering over an order row */
 .order-history-table tbody tr:hover {
-    background-color: var(--color-subtle); /* Subtle grey background on hover */
+    background-color: var(--color-subtle);
 }
 
+/* Removes default list styling from the item list within a table cell */
 .order-history-table td ul {
     list-style: none;
     padding: 0;
@@ -70,8 +79,32 @@
     font-size: 0.9rem;
 }
 
-/* Style for the Order ID */
+/* Makes the Order ID text bold */
 .order-id {
     font-weight: 600;
     color: var(--color-text);
+}
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 992px) {
+    .dashboard-container {
+        padding: 30px;
+        margin: 40px 20px; /* Less horizontal margin on tablets */
+    }
+}
+@media (max-width: 600px) {
+    #dash {
+        height: 30vh; /* Shorter banner on mobile */
+    }
+    .dashboard-container {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+    .order-history-table {
+        font-size: 0.8rem; /* Smaller font on mobile to fit content */
+    }
+    .order-history-table th, 
+    .order-history-table td {
+        padding: 10px 5px;
+    }
 }

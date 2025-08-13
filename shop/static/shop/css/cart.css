@@ -8,6 +8,7 @@
 }
 
 /* --- Breadcrumb Navigation --- */
+/* The container for the step-by-step checkout navigation */
 #breadcrumb {
   display: flex;
   justify-content: center;
@@ -23,27 +24,32 @@
   padding: 0 20px;
   font-size: 1.2rem;
 }
+/* Highlights the current step in the breadcrumb trail */
 #breadcrumb li:first-child a {
   color: black;
   font-weight: bold;
 }
+/* Adds a '>' separator between breadcrumb items */
 #breadcrumb li a::before {
   content: ">";
   position: absolute;
   left: 0;
 }
 #breadcrumb li:first-child a::before {
-  content: none;
+  content: none; /* Removes the separator from the first item */
 }
 
 /* --- Cart & Totals Tables --- */
+/* The main container for the product list table */
 .products-container {
     padding: 20px 80px;
 }
+/* The table element for displaying cart items */
 .table {
     width: 100%;
     border-collapse: collapse;
 }
+/* Styling for the table header row (e.g., "Product", "Price") */
 .table thead td {
     font-weight: 700;
     text-transform: uppercase;
@@ -52,28 +58,33 @@
     border-bottom: 1px solid #e2e9e1;
     text-align: left;
 }
+/* Styling for the cells in the table body */
 .table tbody td {
     padding: 15px 0;
     border-bottom: 1px solid #e2e9e1;
     vertical-align: middle;
 }
+/* The remove item icon */
 .table tbody ion-icon {
     color: #000000;
     cursor: pointer;
 }
 
+/* The main container for the summary section at the bottom of the page */
 #cart-summary {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line on smaller screens */
     padding: 40px 80px;
 }
+/* Shared style for the two boxes in the summary section */
 #charity-box, #totals-box {
     width: 48%;
     border: 1px solid #e2e9e1;
     padding: 30px;
     border-radius: 50px;
 }
+/* The table inside the totals box */
 #totals-box table {
     width: 100%;
     border-collapse: collapse;
@@ -82,9 +93,11 @@
     padding: 10px 0;
     border-bottom: 1px solid #e2e9e1;
 }
+/* Aligns the price to the right */
 #totals-box table td:last-child {
     text-align: right;
 }
+/* The main "Proceed to Checkout" button */
 #totals-box button {
     background-color: var(--color-accent); /* soft pink */
     color: var(--color-text); /* Soft black text */
@@ -105,6 +118,7 @@
     background-color: var(--color-accent-dark);
     color: white; 
 }
+/* The dropdown for selecting a charity */
 #charity-select {
     width: 100%;
     padding: 10px;

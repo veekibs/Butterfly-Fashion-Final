@@ -1,18 +1,24 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
+{# This block defines the unique title for the browser tab #}
 {% block title %}shopping bag | butterfly fashion.{% endblock %}
 
+{# This block adds a specific class to the <body> tag, used by JavaScript to identify this page #}
 {% block body_class %}cart-page{% endblock %}
 
 {% block styles %}
   <link href="{% static 'shop/css/cart.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the active navbar link #}
 {% block page_name %}cart{% endblock %}
 {% block content %}
+
+{# The main hero banner section at the top of the page. #}
 <section id="landing"></section>
 
+{# The breadcrumb navigation that shows the user their stage in the checkout process #}
 <section id="breadcrumb">
   <ul>
     <li><a><strong>shopping bag</strong></a></li>
@@ -22,6 +28,7 @@
   </ul>
 </section>
 
+{# The main container for the table of products in the cart #}
 <div class="products-container">
   <table class="table">
     <thead>
@@ -34,13 +41,16 @@
         <td>Subtotal</td>
       </tr>
     </thead>
+    {# The table body which the script.js file will find this element by its ID + dynamically fill it with the cart items #}
     <tbody id="cart-table-body">
       <tr><td colspan="6" style="text-align: center; padding: 40px;">loading your cart...</td></tr>
     </tbody>
   </table>
 </div>
 
+{# A container for the summary section at the bottom of the page #}
 <section id="cart-summary">
+    {# The box containing the charity selection dropdown #}
     <div id="charity-box">
         <h3>charitable donation</h3>
         <p>select a charity below to donate 10% of your order total at no extra cost to you.</p>
@@ -58,12 +68,14 @@
         </select>
     </div>
 
+    {# The box containing the cart totals and the checkout button #}
     <div id="totals-box">
         <h3>cart totals</h3>
         <table>
             <tbody>
             <tr>
                 <td>subtotal</td>
+                {# The script.js file will find these <span> tags by their IDs and fill them with the calculated totals #}
                 <td>£<span id="subtotal">0.00</span></td>
             </tr>
             <tr>
@@ -81,6 +93,8 @@
             </tbody>
         </table>
         
+        {# This form contains the checkout button; JavaScript handles the submission #}
+        {# The data-checkout-url attribute holds the correct URL, passed from Django's {% url %} tag #}
         <form id="checkout-form" data-checkout-url="{% url 'checkout-page' %}">
             <button id="checkoutbtn" type="submit">proceed to checkout</button>
         </form>

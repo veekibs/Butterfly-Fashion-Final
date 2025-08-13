@@ -1,3 +1,4 @@
+/* The main banner for the New Arrivals page */
 #na {
   background-image: url('../images/banners/new-arrivals.jpg');
   height: 90vh;
@@ -8,13 +9,11 @@
 }
 
 /* --- NEW ARRIVALS RESPONSIVE STYLES --- */
-
 @media (max-width: 992px) {
   #na {
     height: 60vh; /* Shorter banner on tablets */
   }
 }
-
 @media (max-width: 600px) {
   #na {
     height: 50vh; /* Even shorter on mobile */

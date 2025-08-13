@@ -1,39 +1,53 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
 
+{# This block defines the unique title for the browser tab. #}
 {% block title %}home | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the homepage #}
 {% block styles %}
   <link href="{% static 'shop/css/index.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the active navbar link #}
 {% block page_name %}home{% endblock %}
+
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# The main hero banner section at the top of the page with the primary headline #}
 <section class="hero">
   <h1>fashion for your evolution.</h1>
   <p>style that grows with you.</p>
   <a href="{% url 'new-arrivals' %}" class="hero-button">shop new arrivals</a>
 </section>
 
+{# The container for the "Featured Preteens" product grid #}
 <section id="fproduct" class="sectionfp">
   <h2>featured for preteens</h2>
+  {# This empty div will be found by script.js + dynamically filled with product cards #}
   <div class="fprocontainer">
-      </div>
+  </div>
 </section>
 
+{# The "Our Impact" section, which serves as a call-to-action to the mission page. #}
 <section class="impact-section">
     <h2>style that makes a difference.</h2>
     <p>a portion of every purchase supports girls' health and education projects worldwide.</p>
     <a href="{% url 'about' %}" class="learn-more-link">learn about our impact →</a>
 </section>
 
+{# The container for the "Featured Teens" product grid #}
 <section id="fproductt" class="secfp">
   <h2>featured for teens</h2>
+  {# This empty div will also be filled by script.js #}
   <div class="fpcontainer">
-      </div>
+  </div>
 </section>
 
+{# The "Social Proof" section with a static grid of images to create an authentic, community feel #}
 <section class="social-proof-section">
     <h2>as seen on our community</h2>
     <div class="social-grid">
@@ -52,16 +66,20 @@
     </div>
 </section>
 
-<div id="popup">
+{# The HTML for the interactive user feedback popup; its functionality is handled by script.js #}
+<!-- Popup -->
+<div id="popup" class="minimized">
+  <div id="popup-stripe">
+    <ion-icon id="popup-arrow" name="chevron-up-outline"></ion-icon>
+  </div>
   <div id="popup-content">
     <h2>how can we make your experience better?</h2>
-    <input type="text" placeholder="please type here...">
-    <button class="sendbutton">send</button>
-  </div>
-  <div id="popup-arrow-container">
-    <a class="arrow-up"><ion-icon name="chevron-up-circle-outline"></ion-icon></a>
-    <a class="arrow-down"><ion-icon name="chevron-down-circle-outline"></ion-icon></a>
+    <input type="text" id="feedback-input" placeholder="please type here...">
+    <button id="send-feedback">send</button>
+    <p id="feedback-msg" class="hidden">✨ thanks for your feedback!</p>
   </div>
 </div>
+
+
 
 {% endblock %}

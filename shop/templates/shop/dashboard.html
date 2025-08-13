@@ -1,24 +1,40 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
+
+{# This block defines the unique title for the browser tab #}
 {% block title %}my account | butterfly fashion.{% endblock %}
+
+{# This block links to the page-specific stylesheet for the dashboard #}
 {% block styles %}
   <link href="{% static 'shop/css/dashboard.css' %}" rel="stylesheet"/>
 {% endblock %}
+
+{# This block sets the page name variable, used by the base template to highlight the active navbar link #}
 {% block page_name %}dashboard{% endblock %}
 
+
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# The main hero banner section at the top of the page #}
 <section id="dash"></section>
 
+{# The main container for all the dashboard content #}
 <div class="dashboard-container">
     <div class="dashboard-header">
+        {# Displays a personalised welcome message #}
+        {# The 'default' filter provides a fallback to the username if the first name is not set #}
         <h1>welcome, {{ user.first_name|default:user.username }}!</h1>
         <p>here you can view your past order history.</p>
     </div>
 
     <h2>order history</h2>
     
+    {# This is a conditional check: it checks if the 'orders' variable (passed from the view) exists + is not empty #}
     {% if orders %}
+        {# If there are orders, display the history table. #}
         <table class="order-history-table">
             <thead>
                 <tr>
@@ -29,13 +45,17 @@
                 </tr>
             </thead>
             <tbody>
+                {# This loop iterates through each 'order' in the 'orders' list #}
                 {% for order in orders %}
                 <tr>
                     <td>#{{ order.id }}</td>
+                    {# The 'date' filter formats the timestamp into a more readable format #}
                     <td>{{ order.created_at|date:"d M Y" }}</td>
+                    {# The 'floatformat:2' filter ensures the price is always displayed with two decimal places #}
                     <td>£{{ order.total_cost|floatformat:2 }}</td>
                     <td>
                         <ul style="list-style: none; padding: 0;">
+                        {# This nested loop iterates through all the items associated with the current order #}
                         {% for item in order.items.all %}
                             <li>{{ item.quantity }} x {{ item.product.name }}</li>
                         {% endfor %}
@@ -46,6 +66,8 @@
             </tbody>
         </table>
     {% else %}
+        {# If there are no orders, display this message instead of the table #}
         <p>you have not placed any orders yet.</p>
-    {% endif %} </div>
+    {% endif %} {# This closes the 'if orders' block #}
+</div>
 {% endblock %}

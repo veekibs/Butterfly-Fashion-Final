@@ -14,6 +14,7 @@
 /* --- PAGE-SPECIFIC RESPONSIVE ADJUSTMENTS --- */
 
 /* --- For Tablets (screens smaller than 992px) --- */
+/* This media query applies styles only on screens 992px wide or smaller. */
 @media (max-width: 992px) {
   #na, #naa {
     height: 60vh; /* Make banners shorter on tablets */
@@ -28,27 +29,30 @@
 }
 
 /* --- PRODUCT FILTER BAR --- */
+/* The container for the filter buttons (e.g., "All", "Tops", "Bottoms") */
 .product-filter {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  flex-wrap: wrap; /* Allows buttons to wrap onto the next line on small screens */
+  gap: 1.5rem; /* Space between filter buttons */
   margin-bottom: 40px;
 }
 
+/* An individual filter button */
 .filter-item {
-  font-size: 1.5rem;
+  font-size: 1rem; /* Adjusted for a cleaner look */
   font-weight: 600;
   font-family: var(--font-body);
   cursor: pointer;
   padding: 8px 20px;
-  border-radius: 50px;
+  border-radius: 50px; /* Pill shape. */
   border: 1px solid var(--color-border);
   background-color: var(--color-background);
   transition: all 0.3s ease;
 }
 
+/* Styles for the currently active/hovered filter button */
 .filter-item:hover,
 .filter-item.active-filter {
   background-color: var(--color-text);

@@ -25,6 +25,7 @@
   font-size: 1rem;
   font-weight: 600;
 }
+/* Highlights the final step in the breadcrumb trail */
 #breadcrumb li:last-child a {
   color: var(--color-text);
   font-family: var(--font-heading);
@@ -32,7 +33,7 @@
 #breadcrumb li a::before { content: ">"; position: absolute; left: 0; }
 #breadcrumb li:first-child a::before { content: none; }
 
-/* --- Confirmation + Account Creation Box --- */
+/* --- Confirmation & Account Creation Box --- */
 #confirmation {
   text-align: center;
   padding: 60px 40px;
@@ -53,6 +54,7 @@
   font-weight: 400;
   color: #555;
 }
+/* The optional account creation form section */
 #account-creation-section {
     margin-top: 40px;
     border-top: 1px solid var(--color-border);
@@ -74,6 +76,7 @@
     border-radius: 4px;
     margin-top: 8px;
 }
+/* The "Continue Shopping" button */
 #confirmation button {
   background-color: var(--color-accent);
   color: black;
@@ -88,4 +91,19 @@
 }
 #confirmation button:hover {
   background-color: var(--color-accent-dark);
+}
+
+/* --- NEW RESPONSIVE STYLES --- */
+@media (max-width: 600px) {
+    #landing {
+        height: 40vh; /* Shorter banner on mobile */
+    }
+    #confirmation {
+        padding: 40px 20px;
+        width: 100%;
+        margin: 20px 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
 }

@@ -2,17 +2,20 @@
 
 from django.db import migrations, models
 
-
+# The main migration class
 class Migration(migrations.Migration):
 
     dependencies = [
         ('shop', '0006_product_is_featured'),
     ]
 
+    # The list of database operations to perform
     operations = [
+        # This operation adds a new 'charity_choice' field to the Order model
         migrations.AddField(
             model_name='order',
             name='charity_choice',
+            # The field is an optional CharField to store the name of the selected charity
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
     ]

@@ -1,17 +1,21 @@
-{% extends 'shop/base.html' %}
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}{% extends 'shop/base.html' %}
 {% load static %}
 
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% block title %}blog | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the blog #}
 {% block styles %}
   <link href="{% static 'shop/css/blog.css' %}" rel="stylesheet"/>
 {% endblock %}
 
-
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# The main hero banner section at the top of the page #}
 <section id="landing"></section>
 
+{# The container for the filter buttons; the data-filter attributes are used by blog.js #}
 <div class="post-filter sectionfp">
   <span class="filter-item active-filter" data-filter="all">all</span>
   <span class="filter-item" data-filter="beauty">beauty</span>
@@ -20,6 +24,7 @@
   <span class="filter-item" data-filter="relationships">relationships</span>
 </div>
 
+{# The main container for all the static, hardcoded blog post cards. #}
 <section class="posts-container sectionfp">
 
   <div class="post-box beauty">
@@ -218,6 +223,7 @@
 
 {% endblock %}
 
+{# This block loads the page-specific JavaScript for the blog's filtering functionality #}
 {% block scripts %}
   <script src="{% static 'shop/js/blog.js' %}"></script>
 {% endblock %}

@@ -1,17 +1,26 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag #}
 {% load static %}
 
+{# This block sets the page name variable, used by the base template to identify the current page #}
 {% block page_name %}teens{% endblock %}
 
+{# This block defines the unique title for the browser tab #}
 {% block title %}teens collection | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet. #}
 {% block styles %}
   <link href="{% static 'shop/css/teens.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
+
+{# The main hero banner section for the teens page #}
 <section id="teens"></section>
 
+{# The container for the client-side product filter buttons #}
 <div class="product-filter sectionfp">
   <span class="filter-item active-filter" data-filter="all">all</span>
   <span class="filter-item" data-filter="tops">tops</span>
@@ -20,9 +29,11 @@
   <span class="filter-item" data-filter="sets">sets/co-ords</span>
 </div>
 
+{# The main container for the product grid #}
 <section class="sectionfp" style="padding-top: 0;">
+  {# This empty div will be found by script.js + dynamically filled with teen product cards #}
   <div class="fpcontainer">
-      </div>
+  </div>
 </section>
 
 {% endblock %}

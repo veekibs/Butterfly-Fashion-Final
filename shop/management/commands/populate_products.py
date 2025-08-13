@@ -1,17 +1,28 @@
+# Import the necessary tools from Django for creating a management command
 from django.core.management.base import BaseCommand
-# Import all the models to clear
+# Import all the models needed to interact with
 from shop.models import Product, Order, OrderItem 
 
+# Define a new command class that inherits from Django's BaseCommand
 class Command(BaseCommand):
+    # A help message that will be displayed if you run 'python manage.py populate_products --help'
     help = 'Populates the database with a list of products'
 
+    # The main logic of the command lives in the 'handle' method
     def handle(self, *args, **kwargs):
+         # Print a status message to the terminal
         self.stdout.write('Deleting existing data...')
+
+        # Clear out any old data to ensure a clean slate + prevent duplicates
         OrderItem.objects.all().delete()
         Order.objects.all().delete()
         Product.objects.all().delete()
+
+        # Print another status message
         self.stdout.write('Existing data deleted.')
 
+        # A list of dictionaries, where each dictionary represents a new product to be created
+        # The keys in each dictionary must EXACTLY match the field names in the Product model
         products_data = [
             # PRETEEN TOPS
             # light pink beaded t-shirt
@@ -482,15 +493,23 @@ class Command(BaseCommand):
         ]
 
         # Use a set to keep track of names already added to avoid duplicates
+        # This is a precaution in case the list above has items with identical names
         unique_names = set()
         unique_products = []
+
         for product in products_data:
             if product['name'] not in unique_names:
                 unique_products.append(product)
                 unique_names.add(product['name'])
 
         self.stdout.write('Populating the database...')
+
+        # Loop through the final, unique list of products
         for product_data in unique_products:
+            # The **product_data syntax "unpacks" the dictionary,
+            # turning it into keyword arguments for the create method
+            # e.g., name="light pink beaded t-shirt", price=13, ...
             Product.objects.create(**product_data)
         
+        # Print a final success message to the terminal, styled in green!
         self.stdout.write(self.style.SUCCESS(f'Successfully populated the database with {len(unique_products)} unique products!'))
