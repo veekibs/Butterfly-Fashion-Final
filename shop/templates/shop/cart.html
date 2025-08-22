@@ -1,0 +1,82 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Shopping Bag | Butterfly Fashion{% endblock %}
+
+{% block body_class %}cart-page{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'shop/css/cart.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content %}
+<section id="landing"></section>
+
+<section id="breadcrumb">
+  <ul>
+    <li><a href="#"><strong>Shopping Bag</strong></a></li>
+    <li><a href="#">Place Order</a></li>
+    <li><a href="#">Pay</a></li>
+    <li><a href="#">Order Complete</a></li>
+  </ul>
+</section>
+
+<div class="products-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Remove</td>
+        <td>Image</td>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Subtotal</td>
+      </tr>
+    </thead>
+    <tbody id="cart-table-body">
+      <tr><td colspan="6" style="text-align: center; padding: 40px;">Loading your cart...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section id="cart-summary">
+    <div id="charity-box">
+        <h3>Charitable Donation</h3>
+        <p>Select a charity below to donate 10% of your order total at no extra cost to you.</p>
+        <select id="charity-select">
+            <option value="0">Select a charity...</option>
+            <option value="1">Bloody Good Period</option>
+            <option value="2">Girls Out Loud</option>
+            <option value="3">Freedom4Girls</option>
+        </select>
+    </div>
+
+    <div id="totals-box">
+        <h3>Cart Totals</h3>
+        <table>
+            <tbody>
+            <tr>
+                <td>Subtotal</td>
+                <td>£<span id="subtotal">0.00</span></td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td>Amount donated:</td>
+                <td>£<span id="charity-amount">0.00</span></td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>£<span id="cart-total">0.00</span></strong></td>
+            </tr>
+            </tbody>
+        </table>
+        <form id="checkout-form">
+            <button id="checkoutbtn" type="submit">Proceed to Checkout</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
