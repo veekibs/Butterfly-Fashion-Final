@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,6 +16,7 @@ class HomepageTitleTest(unittest.TestCase):
         # This makes the browser wait up to 10 seconds for elements to appear 
         self.wait = WebDriverWait(self.driver, 10)
 
+    # --- SIMPLE HOMEPAGE TEST ---
     def test_homepage_title(self):
         """
         This is the first test
@@ -26,10 +28,11 @@ class HomepageTitleTest(unittest.TestCase):
         # 2. Assert that the text "butterfly fashion" is in the page title
         self.assertIn("butterfly fashion", self.driver.title)
 
+    # --- USER JOURNEY ---
     def test_happy_path_purchase(self):
         """
         Tests a complete user journey: adding an item, viewing the cart,
-        and checking out successfully.
+        + checking out successfully
         """
         # Start on the homepage
         self.driver.get("http://127.0.0.1:8000/")
@@ -70,6 +73,37 @@ class HomepageTitleTest(unittest.TestCase):
         # Assert that we've landed on the "Order Complete" page
         self.wait.until(EC.url_contains('/order-complete/'))
         self.assertIn("order confirmation", self.driver.title)
+
+    # --- USER AUTHENTICATION ---
+    def test_user_authentication_flow(self):
+        """
+        Tests the complete user registration, login + logout flow
+        """
+        # 1. Create a unique email for the new user to avoid test conflicts
+        unique_email = f"testuser_{int(time.time())}@example.com"
+
+        # 2. Navigate to the registration page
+        self.driver.get("http://127.0.0.1:8000/register/")
+
+        # 3. Fill out the registration form + submit
+        self.wait.until(EC.presence_of_element_located((By.ID, 'first_name'))).send_keys('Test')
+        self.driver.find_element(By.ID, 'last_name').send_keys('User')
+        self.driver.find_element(By.ID, 'email').send_keys(unique_email)
+        self.driver.find_element(By.ID, 'password').send_keys('strongpassword123')
+        self.driver.find_element(By.ID, 'register-form').submit()
+
+        # 4. Assert that registration was successful by waiting for the dashboard URL
+        self.wait.until(EC.url_contains('/dashboard/'))
+        
+        # 5. Find + click the logout button using JavaScript for reliability
+        logout_button = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '.logout-button')))
+        self.driver.execute_script("arguments[0].click();", logout_button)
+
+        # 6. Assert that logout was successful by waiting to be redirected to the homepage
+        self.wait.until(EC.url_contains('/')) # Waits for the URL to be the homepage
+        # AND by checking that the "Login" link is now visible again
+        login_link = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "a.account-link[href*='login']")))
+        self.assertIsNotNone(login_link)
 
     def tearDown(self):
         """This method runs after each test."""

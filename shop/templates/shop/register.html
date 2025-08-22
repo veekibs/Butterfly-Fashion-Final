@@ -48,4 +48,9 @@
         <p class="auth-switch">already have an account? <a href="{% url 'login-page' %}">log in</a></p>
     </div>
 </div>
+
+{% block scripts %}
+  <script src="{% static 'shop/js/auth.js' %}"></script>
+{% endblock %}
+
 {% endblock %}
