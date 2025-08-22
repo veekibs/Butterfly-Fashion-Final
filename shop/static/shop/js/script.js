@@ -287,17 +287,21 @@ function updateCartTotals(cartData) {
 
 async function validateCart(event) {
     event.preventDefault();
+    const form = event.target;
+    const checkoutUrl = form.dataset.checkoutUrl; // Get the URL from the data attribute
+
     try {
         const response = await fetch('/api/cart/');
         const cartData = await response.json();
         const charitySelect = document.getElementById('charity-select');
         
         if (!cartData.items || cartData.items.length === 0) {
-            alert('Please add at least one item to your cart before proceeding!');
+          alert('Please add at least one item to your cart before proceeding!');
         } else if (charitySelect.value === "0") {
-            alert('Please select a charity before proceeding!');
+          alert('Please select a charity before proceeding!');
         } else {
-            alert('Proceeding to checkout (Sprint 4)');
+          // Redirect to the correct URL
+          window.location.href = checkoutUrl; 
         }
     } catch (error) {
         console.error("Validation failed:", error);

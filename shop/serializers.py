@@ -1,7 +1,7 @@
 # in shop/serializers.py
 
 from rest_framework import serializers
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, OrderItem, Order
 
 # ====================================================================================
 # === PRODUCT SERIALIZERS ==========================================================
@@ -49,3 +49,17 @@ class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
         fields = ['id', 'items', 'grand_total']
+
+# A serializer for the OrderItem model
+class OrderItemSerializer(serializers.ModelSerializer):
+    product = SimpleProductSerializer()
+    class Meta:
+        model = OrderItem
+        fields = ['product', 'price', 'quantity']
+
+# A serializer for the main Order model
+class OrderSerializer(serializers.ModelSerializer):
+    items = OrderItemSerializer(many=True, read_only=True)
+    class Meta:
+        model = Order
+        fields = ['id', 'first_name', 'last_name', 'email', 'address', 'city', 'postcode', 'paid', 'items']

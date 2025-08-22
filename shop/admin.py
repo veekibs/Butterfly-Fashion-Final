@@ -1,25 +1,35 @@
-# in shop/admin.py
-
 from django.contrib import admin
-from .models import Product, Cart, CartItem
+# Import Order + OrderItem
+from .models import Product, Cart, CartItem, Order, OrderItem
 
-# This class customises how the Product list appears in the admin panel
+# --- Product Admin ---
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'category', 'sub_category', 'is_new_arrival')
     list_filter = ('category', 'sub_category', 'is_new_arrival')
     search_fields = ('name', 'description')
 
-# This class tells Django to show CartItems "inside" the Cart detail page
+# --- Cart Admin ---
 class CartItemInline(admin.TabularInline):
     model = CartItem
-    extra = 0 # Don't show extra empty rows to add new items
+    extra = 0
 
-# This class customises the Cart list view in the admin panel
 class CartAdmin(admin.ModelAdmin):
     inlines = [CartItemInline]
     list_display = ('id', 'created_at')
 
-# Tell the admin site about the models and their custom views
+# --- Order Admin ---
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+
+class OrderAdmin(admin.ModelAdmin):
+    inlines = [OrderItemInline]
+    list_display = ('id', 'first_name', 'last_name', 'paid', 'created_at')
+    list_filter = ('paid', 'created_at')
+
+# --- Register all models ---
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem)
+admin.site.register(Order, OrderAdmin) # Register Order
+admin.site.register(OrderItem) # Register OrderItem
