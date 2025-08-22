@@ -1,0 +1,76 @@
+/* --- Page Banner --- */
+#landing {
+  background-image: url("../images/banners/needhelp.png");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Intro Box --- */
+#intro {
+  background-color: white;
+  box-shadow: 0 5px 15px #c4c4c4;
+  padding: 50px 80px;
+  margin: 40px 100px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* --- Helpline Bar --- */
+#help-line {
+  background-color: #fde2e8; /* Added color to make it prominent */
+  text-align: center;
+  padding: 20px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.help-line-icon { font-size: 2.5rem; margin-right: 1.5rem; }
+#help-line-text { font-size: 1.3rem; font-weight: 600; text-align: left; }
+
+/* --- Contact Form --- */
+.container {
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 15px 20px #c4c4c4;
+  padding: 50px 80px;
+  margin: 40px 100px;
+}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=submit] {
+  background-color: #ff4278;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+  transition: 0.3s ease;
+}
+input[type=submit]:hover {
+  background-color: #e03a69;
+}
+.col1 { float: left; width: 25%; margin-top: 20px; }
+.col2 { float: left; width: 75%; margin-top: 20px; }
+.row:after { content: ""; display: table; clear: both; }
+
+/* --- Responsive for Form --- */
+@media screen and (max-width: 768px) {
+  #intro, .container {
+    margin: 40px 20px;
+    padding: 30px;
+  }
+  .col1, .col2, input[type=submit] {
+    width: 100%;
+    margin-top: 10px;
+    float: none;
+  }
+}

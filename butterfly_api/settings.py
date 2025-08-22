@@ -1,11 +1,9 @@
-# in butterfly_api/settings.py
-
 import os
 from pathlib import Path
 
 # --- Core Paths and Settings ---
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-&97*1w%=16+j274*jws2yseggontf4eh36os@cw+jjikn^&vwq' # You can keep your old key
+SECRET_KEY = 'django-insecure-&97*1w%=16+j274*jws2yseggontf4eh36os@cw+jjikn^&vwq' 
 DEBUG = True
 ALLOWED_HOSTS = []
 ROOT_URLCONF = 'butterfly_api.urls'
@@ -24,7 +22,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
 
-    # My apps
+    # Apps
     'shop', # new app
 ]
 
@@ -65,10 +63,12 @@ TEMPLATES = [
 
 # --- Static Files (CSS, JavaScript, Images) ---
 STATIC_URL = 'static/'
-# This tells Django where to find the 'static' folder
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'shop/static'),
+    #
 ]
+
+# This tells Django where to collect all static files into
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # --- Internationalisation & Password Validation (Standard) ---
 LANGUAGE_CODE = 'en-us'

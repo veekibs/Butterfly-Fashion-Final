@@ -1,0 +1,136 @@
+
+/* === PAGE-SPECIFIC BANNER STYLE =================================== */
+#landing {
+  background-image: url("../images/blog/banner.png");
+  height: 60vh; /* Reduced height for a more balanced look */
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  background-position: center center;
+}
+
+#landing h1 {
+    color: #fff; /* White text for better contrast */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+#landing p {
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* === BLOG-SPECIFIC ELEMENTS ======================================= */
+
+/* --- Post Filter --- */
+.post-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.5rem;
+  margin: 40px 0;
+}
+
+.filter-item {
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.filter-item:hover, .active-filter {
+  background-color: #ff4278;
+  color: white;
+}
+
+/* --- Post Grid --- */
+.posts-container {
+  display: grid;
+  /* Creates a responsive grid that fits as many ~300px columns as possible */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 80px; /* Use padding from the shared .sectionfp style */
+}
+
+.post-box {
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eee;
+  transition: transform 0.3s ease-in-out;
+}
+
+.post-box:hover {
+  transform: translateY(-10px);
+}
+
+.post-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.category {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ff4278;
+  margin-top: 10px;
+}
+
+.post-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: black;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 5px 0;
+  text-decoration: none;
+}
+
+.post-date {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 5px;
+  color: #777;
+}
+
+.post-description {
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  margin: 10px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}

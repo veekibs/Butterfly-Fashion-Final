@@ -1,0 +1,31 @@
+/* Banner for the "Tops" section divider */
+#naa {
+  background-image: url('../images/banners/topsp.jpg');
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Banner for the "Bottoms" section divider */
+#na {
+  background-image: url('../images/banners/bottoms.jpg');
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* === PRETEENS RESPONSIVE STYLES =================================== */
+
+@media (max-width: 992px) {
+  #naa, #na {
+    height: 60vh; /* Shorter banners on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  #naa, #na {
+    height: 50vh; /* Even shorter on mobile */
+  }
+}

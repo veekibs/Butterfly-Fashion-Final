@@ -3,9 +3,7 @@
 from django.db import models
 import uuid
 
-# ====================================================================================
 # === PRODUCT MODEL ================================================================
-# ====================================================================================
 # Represents a single product that can be sold in the store
 class Product(models.Model):
     # A simple text field for the product's name
@@ -17,7 +15,7 @@ class Product(models.Model):
     # A decimal field for currency, which prevents floating-point rounding errors
     price = models.DecimalField(max_digits=10, decimal_places=2)
     
-    # A field to store the path or URL to the product's image
+    # A field to store the path/URL to the product's image
     image_url = models.CharField(max_length=1024)
     
     # A field to define the main age category. 'choices' creates a dropdown menu in the admin panel
@@ -42,9 +40,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# ====================================================================================
 # === CART MODELS ==================================================================
-# ====================================================================================
 
 # Represents a single, anonymous shopping cart session
 class Cart(models.Model):

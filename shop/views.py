@@ -1,11 +1,36 @@
-# in shop/views.py
-
+from django.views.generic import TemplateView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import Cart, CartItem, Product
 from .serializers import CartSerializer, ProductSerializer
+
+# === TEMPLATE VIEWS (for rendering HTML pages) ======================================
+
+class HomeView(TemplateView):
+    template_name = 'shop/index.html'
+
+class PreteensView(TemplateView):
+    template_name = 'shop/preteens.html'
+
+class TeensView(TemplateView):
+    template_name = 'shop/teens.html'
+
+class NewArrivalsView(TemplateView):
+    template_name = 'shop/newarrivals.html'
+
+class BlogView(TemplateView):
+    template_name = 'shop/blog.html'
+
+class AboutView(TemplateView):
+    template_name = 'shop/about.html'
+
+class HelpView(TemplateView):
+    template_name = 'shop/help.html'
+
+class CartView(TemplateView):
+    template_name = 'shop/cart.html'
 
 # --- Product ViewSet (For listing products) ---
 # A ReadOnlyModelViewSet is a simple way to allow 'read-only' access to the product list

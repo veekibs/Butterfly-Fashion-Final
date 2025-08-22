@@ -1,0 +1,147 @@
+/* === HOMEPAGE-SPECIFIC STYLES ===================================== */
+
+/* --- Free Shipping Banner --- */
+#shipping-free {
+  background-color: #fde2e8;
+  text-align: center;
+  padding: 15px 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shipping-free-icon {
+  font-size: 2.1rem;
+  margin-right: 0.7rem;
+}
+
+.shipping-free-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+}
+
+/* --- Main Landing Image --- */
+#landing {
+  background-image: url('../images/banners/landingpage.png');
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- "Shop Now" Banner --- */
+#banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('../images/banners/newarrivals.png');
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  margin: 40px 0;
+  padding-top: 150px; 
+}
+
+#banner button:hover {
+  background: #ff4278;
+  color: #fff;
+}
+
+/* --- Popup UX Element --- */
+#popup {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  width: 300px;
+  height: auto;
+  background-color: #fff;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+  transition: 0.5s ease-in-out;
+  z-index: 1000;
+}
+
+#popup.minimized { 
+  transform: translateY(calc(100% - 50px));
+}
+
+#popup-content { padding: 20px; }
+#popup h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
+
+#popup input[type="text"] {
+  width: 100%; 
+  height: 40px; 
+  padding: 10px;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  font-size: 1rem; 
+  margin-bottom: 10px;
+}
+
+#popup button {
+  height: 40px; 
+  padding: 0 20px; 
+  border-radius: 4px;
+  border: none; 
+  background-color: #ff4278; 
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#popup button:hover {
+  background-color: #e03a69;
+  transform: scale(1.03);
+}
+
+#popup-arrow-container { 
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  cursor: pointer;
+}
+
+.arrow-up, .arrow-down {
+  font-size: 30px;
+  color: #000;
+}
+
+#popup:not(.minimized) .arrow-up { display: none; }
+#popup.minimized .arrow-down { display: none; }
+
+/* === HOMEPAGE RESPONSIVE STYLES =================================== */
+
+@media (max-width: 992px) {
+  #landing {
+    height: 60vh; /* Shorter banner on tablets */
+  }
+  #banner {
+    height: 40vh;
+    padding-top: 50px; /* Less padding on smaller banners */
+  }
+  .shipping-free-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #landing {
+    height: 50vh; /* Even shorter on mobile */
+  }
+  #banner {
+    height: 30vh;
+    padding: 20px; /* Adjust padding for mobile */
+    margin: 20px 0;
+  }
+  #popup {
+    width: 100%; /* Make popup full-width on mobile */
+    right: 0;
+    border-radius: 0;
+  }
+}
