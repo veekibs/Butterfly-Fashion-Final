@@ -1,0 +1,77 @@
+/* --- Page Banner --- */
+#dash {
+  background-image: url("../images/banners/user-dashboard.jpg");
+  height: 50vh; /* A slightly shorter banner */
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- Main Dashboard Container --- */
+.dashboard-container {
+    padding: 40px;
+    max-width: 950px;
+    margin: 60px auto;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px; /* Rounded corners for a softer look */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+}
+
+.dashboard-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    text-align: center; /* Center the welcome message */
+}
+.dashboard-header h1 {
+    margin-bottom: 10px;
+}
+.dashboard-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* --- Order History Table --- */
+.order-history-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between borders */
+}
+
+.order-history-table th, 
+.order-history-table td {
+    padding: 20px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.order-history-table th {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.order-history-table tbody tr {
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+/* ⭐ This adds the hover effect to each order row ⭐ */
+.order-history-table tbody tr:hover {
+    background-color: var(--color-subtle); /* Subtle grey background on hover */
+}
+
+.order-history-table td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.order-history-table td ul li {
+    font-size: 0.9rem;
+}
+
+/* Style for the Order ID */
+.order-id {
+    font-weight: 600;
+    color: var(--color-text);
+}

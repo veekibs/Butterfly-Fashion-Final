@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}login | butterfly fashion.{% endblock %}
+
+{% block styles %}
+  <link href="{% static 'shop/css/users.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block page_name %}login{% endblock %}
+
+
+{% block content %}
+
+<section id="landing"></section>
+
+<div class="auth-container">
+    <div class="auth-form">
+        <h1>login</h1>
+        <form id="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">username (your email)</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="auth-button">login</button>
+        </form>
+        <p class="auth-switch">don't have an account? <a href="{% url 'register-page' %}">register</a></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'shop/js/auth.js' %}"></script>
+{% endblock %}
