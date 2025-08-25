@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}Shopping Bag | Butterfly Fashion{% endblock %}
+{% block title %}shopping bag | butterfly fashion.{% endblock %}
 
 {% block body_class %}cart-page{% endblock %}
 
@@ -9,16 +9,16 @@
   <link href="{% static 'shop/css/cart.css' %}" rel="stylesheet"/>
 {% endblock %}
 
-
+{% block page_name %}cart{% endblock %}
 {% block content %}
 <section id="landing"></section>
 
 <section id="breadcrumb">
   <ul>
-    <li><a href="#"><strong>Shopping Bag</strong></a></li>
-    <li><a href="#">Place Order</a></li>
-    <li><a href="#">Pay</a></li>
-    <li><a href="#">Order Complete</a></li>
+    <li><a><strong>shopping bag</strong></a></li>
+    <li><a>place order</a></li>
+    <li><a>pay</a></li>
+    <li><a>order complete</a></li>
   </ul>
 </section>
 
@@ -35,48 +35,54 @@
       </tr>
     </thead>
     <tbody id="cart-table-body">
-      <tr><td colspan="6" style="text-align: center; padding: 40px;">Loading your cart...</td></tr>
+      <tr><td colspan="6" style="text-align: center; padding: 40px;">loading your cart...</td></tr>
     </tbody>
   </table>
 </div>
 
 <section id="cart-summary">
     <div id="charity-box">
-        <h3>Charitable Donation</h3>
-        <p>Select a charity below to donate 10% of your order total at no extra cost to you.</p>
+        <h3>charitable donation</h3>
+        <p>select a charity below to donate 10% of your order total at no extra cost to you.</p>
         <select id="charity-select">
-            <option value="0">Select a charity...</option>
-            <option value="1">Bloody Good Period</option>
-            <option value="2">Girls Out Loud</option>
-            <option value="3">Freedom4Girls</option>
+            <option value="0">select a charity...</option>
+            <option value="1">bloody good period</option>
+            <option value="2">girls out loud</option>
+            <option value="3">freedom4girls</option>
+            <option value="4">rites for girls</option>
+            <option value="5">period poverty</option>
+            <option value="6">young minds</option>
+            <option value="7">always keeping girls in school</option>
+            <option value="8">plan international</option>
+            <option value="9">hey girls</option>
         </select>
     </div>
 
     <div id="totals-box">
-        <h3>Cart Totals</h3>
+        <h3>cart totals</h3>
         <table>
             <tbody>
             <tr>
-                <td>Subtotal</td>
+                <td>subtotal</td>
                 <td>£<span id="subtotal">0.00</span></td>
             </tr>
             <tr>
-                <td>Shipping</td>
-                <td>Free</td>
+                <td>shipping</td>
+                <td>free</td>
             </tr>
             <tr>
-                <td>Amount donated:</td>
+                <td>amount donated:</td>
                 <td>£<span id="charity-amount">0.00</span></td>
             </tr>
             <tr>
-                <td><strong>Total</strong></td>
+                <td><strong>total</strong></td>
                 <td><strong>£<span id="cart-total">0.00</span></strong></td>
             </tr>
             </tbody>
         </table>
         
         <form id="checkout-form" data-checkout-url="{% url 'checkout-page' %}">
-            <button id="checkoutbtn" type="submit">Proceed to Checkout</button>
+            <button id="checkoutbtn" type="submit">proceed to checkout</button>
         </form>
     </div>
 </section>

@@ -1,33 +1,51 @@
-// === MAIN APP LOGIC =================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Uses the body class to identify the cart page
-    if (document.body.classList.contains('cart-page')) {
-        displayCart();
-    } else {
-        // On all other pages, display products
-        initializePage();
-    }
-
-    // These run on every page load
-    setupEventListeners();
-    onLoadCartNumbers();
-});
-
-// === PRODUCT FETCHING + RENDERING ===================================================
+// --- MAIN APP INITIALIZATION & ROUTER ---
 
 /**
- * Initialises a product-displaying page
+ * This is the main entry point. It runs when the HTML document is fully loaded.
  */
+document.addEventListener('DOMContentLoaded', () => {
+    onLoadCartNumbers(); 
+    setupEventListeners(); // ALWAYS set up global listeners
+
+    const page = document.body.dataset.page;
+    if (page === 'cart') {
+        displayCart();
+    } else {
+        initializePage();
+    }
+});
+
+// This is the corresponding initializePage function that now handles its own event listeners
 async function initializePage() {
     const products = await fetchProducts();
     if (products) {
         renderProducts(products);
+        // Event listeners are set up here, only AFTER products are on the page
+        setupEventListeners();
     }
 }
 
+// --- UI EFFECTS ---
+
+/**
+ * Adds a scroll effect to the header, making it solid after scrolling down.
+ */
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (header) { // Check if header exists
+        if (window.scrollY > 50) { // If scrolled more than 50px
+            header.classList.add('header-scrolled');
+        } else {
+            header.classList.remove('header-scrolled');
+        }
+    }
+});
+
+// --- PRODUCT FETCHING & RENDERING ---
+
 /**
  * Fetches the entire product catalog from the backend API
+ * @returns {Promise<Array|null>} A promise that resolves to an array of products/null on error
  */
 async function fetchProducts() {
     try {
@@ -42,56 +60,38 @@ async function fetchProducts() {
 }
 
 /**
- * Renders products into the correct containers based on the current page
+ * Renders the correct products into the correct containers based on the current page
  * @param {Array} products - The array of all product objects
  */
 function renderProducts(products) {
-    const pageBody = document.body;
-
-    // Homepage logic
-    if (document.querySelector('#landing')) { // A simple way to detect the homepage
-        const preteenContainer = document.querySelector('#fproduct .fprocontainer');
-        const teenContainer = document.querySelector('#fproductt .fpcontainer');
-        if (preteenContainer) renderProductList(products.filter(p => p.category === 'preteen' && !p.is_new_arrival).slice(0, 8), preteenContainer, 'fpro');
-        if (teenContainer) renderProductList(products.filter(p => p.category === 'teen' && !p.is_new_arrival).slice(0, 8), teenContainer, 'fp');
-    }
-    // Preteens page logic
-    else if (document.querySelector('#preteen-tops')) {
-        const topsContainer = document.querySelector('#preteen-tops .fprocontainer');
-        const bottomsContainer = document.querySelector('#preteen-bottoms .fpcontainer');
-        const preteenProducts = products.filter(p => p.category === 'preteen' && !p.is_new_arrival);
-        if (topsContainer) {
-            const tops = preteenProducts.filter(p => p.sub_category === 'top');
-            renderProductList(tops, topsContainer, 'fpro');
-        }
-        if (bottomsContainer) {
-            const bottoms = preteenProducts.filter(p => p.sub_category === 'bottom');
-            renderProductList(bottoms, bottomsContainer, 'fp');
-        }
-    }
-    // Teens page logic
-    else if (document.querySelector('#teen-tops')) {
-        const topsContainer = document.querySelector('#teen-tops .fpcontainer');
-        const bottomsContainer = document.querySelector('#teen-bottoms .fpcontainer');
-        const teenProducts = products.filter(p => p.category === 'teen' && !p.is_new_arrival);
-        if (topsContainer) {
-            const tops = teenProducts.filter(p => p.sub_category === 'top');
-            renderProductList(tops, topsContainer, 'fp');
-        }
-        if (bottomsContainer) {
-            const bottoms = teenProducts.filter(p => p.sub_category === 'bottom');
-            renderProductList(bottoms, bottomsContainer, 'fp');
-        }
-    }
-    // New Arrivals page logic
-    else if (document.querySelector('title').textContent.includes('New Arrivals')) { // Detect by page title
-        const preteenContainer = document.querySelector('#fproduct .fprocontainer');
-        const teenContainer = document.querySelector('#fproductt .fpcontainer');
-        if (preteenContainer) renderProductList(products.filter(p => p.category === 'preteen' && p.is_new_arrival), preteenContainer, 'fpro');
-        if (teenContainer) renderProductList(products.filter(p => p.category === 'teen' && p.is_new_arrival), teenContainer, 'fp');
+    const page = document.body.dataset.page;
+    switch (page) {
+        case 'home':
+            const preteenContainerHome = document.querySelector('#fproduct .fprocontainer');
+            const teenContainerHome = document.querySelector('#fproductt .fpcontainer');
+            if (preteenContainerHome) renderProductList(products.filter(p => p.category === 'preteen' && p.is_featured), preteenContainerHome, 'fpro');
+            if (teenContainerHome) renderProductList(products.filter(p => p.category === 'teen' && p.is_featured), teenContainerHome, 'fp');
+            break;
+        case 'preteens':
+            const preteenContainer = document.querySelector('.fprocontainer');
+            if (preteenContainer) renderProductList(products.filter(p => p.category === 'preteen' && !p.is_new_arrival), preteenContainer, 'fpro');
+            break;
+        case 'teens':
+            const teenContainer = document.querySelector('.fpcontainer');
+            if (teenContainer) renderProductList(products.filter(p => p.category === 'teen' && !p.is_new_arrival), teenContainer, 'fp');
+            break;
+        case 'newarrivals':
+            const preteenContainerNA = document.querySelector('#fproduct .fprocontainer');
+            const teenContainerNA = document.querySelector('#fproductt .fpcontainer');
+            if (preteenContainerNA) renderProductList(products.filter(p => p.category === 'preteen' && p.is_new_arrival), preteenContainerNA, 'fpro');
+            if (teenContainerNA) renderProductList(products.filter(p => p.category === 'teen' && p.is_new_arrival), teenContainerNA, 'fp');
+            break;
     }
 }
 
+/**
+ * Renders a list of products into a given HTML container
+ */
 function renderProductList(productList, container, proClass) {
     if (!container) return;
     container.innerHTML = '';
@@ -100,24 +100,34 @@ function renderProductList(productList, container, proClass) {
     });
 }
 
+/**
+ * Creates the HTML string for a single product card, including two images for the hover effect
+ */
 function createProductHtml(product, proClass) {
-    const infoClass = (proClass === 'fpro') ? 'info' : 'des';
-    const imagePath = `/static/${product.image_url}`;
+    const productImage = `/static/${product.image_url}`;
+    const modelImage = product.model_image_url ? `/static/${product.model_image_url}` : productImage;
+
+    // This now correctly includes both the proClass (fpro/fp) + the sub_category for filtering 
     return `
-        <div class="${proClass}" data-product-id="${product.id}">
-            <img src="${imagePath}" alt="${product.name}">
-            <div class="${infoClass}">
-                <h5>${product.name}</h5>
-                <div class="star">
-                    <ion-icon name="star-sharp"></ion-icon><ion-icon name="star-sharp"></ion-icon>
-                </div>
-                <h4>£${product.price}</h4>
+        <div class="${proClass} ${product.sub_category}" data-product-id="${product.id}">
+            <div class="image-container">
+                <img class="product-shot" src="${productImage}" alt="${product.name}">
+                <img class="model-shot" src="${modelImage}" alt="${product.name} worn by model">
             </div>
-            <a class="cart"><ion-icon name="cart-outline"></ion-icon></a>
+            <div class="card-body">
+                <div class="info">
+                    <h5>${product.name}</h5>
+                    <h4>£${product.price}</h4>
+                </div>
+                <a class="cart"><ion-icon name="cart-outline"></ion-icon></a>
+            </div>
         </div>
     `;
 }
 
+/**
+ * Displays a generic error message in product containers if the API fails
+ */
 function displayErrorMessage() {
     const containers = document.querySelectorAll('.fprocontainer, .fpcontainer');
     containers.forEach(container => {
@@ -127,28 +137,96 @@ function displayErrorMessage() {
     });
 }
 
-// === EVENT LISTENERS + CSRF TOKEN ===================================================
+// --- EVENT LISTENERS & CSRF TOKEN ---
 
+/**
+ * Sets up global event listeners for the entire application
+ */
 function setupEventListeners() {
+    // This listener is now set up only ONCE per page load
     document.body.addEventListener('click', function(event) {
         const addToCartBtn = event.target.closest('.cart');
         if (addToCartBtn) {
             const productElement = addToCartBtn.closest('[data-product-id]');
-            if (productElement) {
-                addToCart(productElement.dataset.productId);
-            }
+            if (productElement) addToCart(productElement.dataset.productId);
         }
         const removeFromCartBtn = event.target.closest('.remove-item');
         if (removeFromCartBtn) {
             removeFromCart(removeFromCartBtn.dataset.itemId);
         }
     });
+
+    // Specific listener for the checkout form
     const checkoutForm = document.getElementById('checkout-form');
     if (checkoutForm) {
-        checkoutForm.addEventListener('submit', validateCart);
+        checkoutForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        console.log("Checkout form submitted!"); // <- debug
+        await validateCart(event);
+    });
+    }
+
+    // Specific listeners for the homepage UX popup
+    const popupContainer = document.getElementById('popup');
+    if (popupContainer) {
+        const arrowUp = popupContainer.querySelector('.arrow-up');
+        const arrowDown = popupContainer.querySelector('.arrow-down');
+        const sendButton = popupContainer.querySelector('.sendbutton');
+        const inputField = popupContainer.querySelector('input[type="text"]');
+
+        if(arrowUp) arrowUp.addEventListener('click', () => popupContainer.classList.remove('minimized'));
+        if(arrowDown) arrowDown.addEventListener('click', () => popupContainer.classList.add('minimized'));
+        if(sendButton) sendButton.addEventListener('click', () => {
+            if (inputField.value.trim() === "") {
+                alert("Please enter a message.");
+            } else {
+                alert('Message sent. Thank you!');
+                inputField.value = '';
+                popupContainer.classList.add('minimized');
+            }
+        });
+    }
+
+    // --- Charity Selector Listener ---
+    const charitySelect = document.getElementById('charity-select');
+    if (charitySelect) {
+        charitySelect.addEventListener('change', function() {
+            const selectedCharity = this.options[this.selectedIndex].text;
+            if (this.value !== "0") {
+                localStorage.setItem('selectedCharity', selectedCharity);
+            } else {
+                localStorage.removeItem('selectedCharity');
+            }
+        });
+    }
+
+    // --- Product Filter Logic ---
+    const filterItems = document.querySelectorAll('.product-filter .filter-item');
+    if (filterItems.length > 0) {
+        filterItems.forEach(item => {
+            item.addEventListener('click', function() {
+                filterItems.forEach(i => i.classList.remove('active-filter'));
+                this.classList.add('active-filter');
+
+                const filterValue = this.dataset.filter;
+                // MUST find the product boxes *inside* the click event
+                const productBoxes = document.querySelectorAll('.fpro, .fp'); 
+                
+                productBoxes.forEach(box => {
+                    if (filterValue === 'all' || box.classList.contains(filterValue)) {
+                        box.style.display = 'block'; // Show
+                    } else {
+                        box.style.display = 'none'; // Hide
+                    }
+                });
+            });
+        });
     }
 }
 
+/**
+ * A helper function to get the CSRF token from the page's cookies
+ */
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -165,25 +243,22 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
-// === CART LOGIC ========================================================
+// --- CART LOGIC (API DRIVEN) ---
 
+/**
+ * Adds a product to the server-side cart
+ */
 async function addToCart(productId) {
     try {
         const response = await fetch('/api/cart/add/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
             body: JSON.stringify({ product_id: productId })
         });
-
         if (response.ok) {
-            // Tells the cart icon to update itself
-            await onLoadCartNumbers();
-            alert('Item added to cart!');
+            await onLoadCartNumbers(); // Re-fetch cart state to update icon
         } else {
-            throw new Error('Failed to add item to cart.');
+            throw new Error('Failed to add item.');
         }
     } catch (error) {
         console.error(error);
@@ -191,21 +266,19 @@ async function addToCart(productId) {
     }
 }
 
+/**
+ * Removes an item from the server-side cart
+ */
 async function removeFromCart(itemId) {
     try {
         const response = await fetch('/api/cart/remove/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
-            },
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
             body: JSON.stringify({ item_id: itemId })
         });
-
         if (response.ok) {
-            // These lines force the page to update after a successful deletion 
-            await displayCart(); // Re-renders the cart item list
-            await onLoadCartNumbers(); // Re-fetches the total for the header icon
+            await displayCart(); // Re-render the cart item list
+            await onLoadCartNumbers(); // Re-fetch the total for the header icon
         } else {
             throw new Error('Failed to remove item.');
         }
@@ -215,6 +288,9 @@ async function removeFromCart(itemId) {
     }
 }
 
+/**
+ * Fetches the current cart state from the API to update the cart icon
+ */
 async function onLoadCartNumbers() {
     try {
         const response = await fetch('/api/cart/');
@@ -227,6 +303,9 @@ async function onLoadCartNumbers() {
     }
 }
 
+/**
+ * Updates the cart number in the header
+ */
 function updateCartIcon(cartData) {
     const cartSpan = document.getElementById("cart-count");
     if (cartSpan) {
@@ -238,6 +317,9 @@ function updateCartIcon(cartData) {
     }
 }
 
+/**
+ * Fetches the full cart details from the API + renders them on the cart page
+ */
 async function displayCart() {
     try {
         const response = await fetch('/api/cart/');
@@ -272,23 +354,30 @@ async function displayCart() {
     }
 }
 
+/**
+ * Updates the totals table on the cart page
+ */
 function updateCartTotals(cartData) {
-    const subtotal = parseFloat(cartData.grand_total || '0').toFixed(2);
-    const charityAmount = (subtotal * 0.1).toFixed(2);
-    
     const subtotalEl = document.getElementById("subtotal");
     const charityEl = document.getElementById("charity-amount");
     const totalEl = document.getElementById("cart-total");
 
-    if (subtotalEl) subtotalEl.textContent = subtotal;
-    if (charityEl) charityEl.textContent = charityAmount;
-    if (totalEl) totalEl.textContent = subtotal;
+    if (subtotalEl && charityEl && totalEl) {
+        const subtotal = parseFloat(cartData.grand_total || '0').toFixed(2);
+        const charityAmount = (subtotal * 0.1).toFixed(2);
+        subtotalEl.textContent = subtotal;
+        charityEl.textContent = charityAmount;
+        totalEl.textContent = subtotal;
+    }
 }
 
+/**
+ * Validates the cart before allowing the user to proceed to checkout
+ */
 async function validateCart(event) {
     event.preventDefault();
     const form = event.target;
-    const checkoutUrl = form.dataset.checkoutUrl; // Get the URL from the data attribute
+    const checkoutUrl = form.dataset.checkoutUrl;
 
     try {
         const response = await fetch('/api/cart/');
@@ -300,7 +389,6 @@ async function validateCart(event) {
         } else if (charitySelect.value === "0") {
           alert('Please select a charity before proceeding!');
         } else {
-          // Redirect to the correct URL
           window.location.href = checkoutUrl; 
         }
     } catch (error) {

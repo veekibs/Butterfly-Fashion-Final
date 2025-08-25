@@ -2,18 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
-# === PRODUCT MODEL ====================================================
+# --- PRODUCT MODEL ---
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image_url = models.CharField(max_length=1024)
+    # NEW FIELD for the hover image 
+    model_image_url = models.CharField(max_length=1024, blank=True, null=True)
     category = models.CharField(max_length=50, choices=[('preteen', 'Preteen'), ('teen', 'Teen')])
     is_new_arrival = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
     
     class SubCategory(models.TextChoices):
-        TOP = 'top', 'Top'
-        BOTTOM = 'bottom', 'Bottom'
+        TOP = 'tops', 'Tops'
+        BOTTOM = 'bottoms', 'Bottoms'
+        DRESSES = 'dresses', 'Dresses'
+        SETS = 'sets', 'Sets'
     
     sub_category = models.CharField(
         max_length=50,
@@ -24,7 +29,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# === CART MODELS ======================================================
+# --- CART MODELS ---
 class Cart(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -40,7 +45,7 @@ class CartItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.product.name}"
     
-# === ORDER MODELS =====================================================
+# --- ORDER MODELS ---
 class Order(models.Model):
     # Optional link to a user account
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
@@ -54,6 +59,7 @@ class Order(models.Model):
     postcode = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
+    charity_choice = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"Order {self.id}"

@@ -1,25 +1,27 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}Preteens Collection | Butterfly Fashion{% endblock %}
+{% block page_name %}preteens{% endblock %}
+
+{% block title %}preteens collection | butterfly fashion.{% endblock %}
 
 {% block styles %}
   <link href="{% static 'shop/css/preteens.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {% block content %}
+<section id="preteens"></section>
 
-<section id="naa"></section>
+<div class="product-filter sectionfp">
+  <span class="filter-item active-filter" data-filter="all">all</span>
+  <span class="filter-item" data-filter="tops">tops</span>
+  <span class="filter-item" data-filter="bottoms">bottoms</span>
+  <span class="filter-item" data-filter="dresses">dresses</span>
+  <span class="filter-item" data-filter="sets">sets/co-ords</span>
+</div>
 
-<section id="preteen-tops" class="sectionfp">
+<section class="sectionfp" style="padding-top: 0;">
   <div class="fprocontainer">
-      </div>
-</section>
-
-<section id="na"></section> 
-
-<section id="preteen-bottoms" class="sectionfp">
-  <div class="fpcontainer">
       </div>
 </section>
 

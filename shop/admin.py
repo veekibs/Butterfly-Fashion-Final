@@ -4,7 +4,7 @@ from .models import Product, Cart, CartItem, Order, OrderItem
 
 # --- Product Admin ---
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'category', 'sub_category', 'is_new_arrival')
+    list_display = ('name', 'price', 'category', 'sub_category', 'is_new_arrival', 'is_featured')
     list_filter = ('category', 'sub_category', 'is_new_arrival')
     search_fields = ('name', 'description')
 

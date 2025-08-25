@@ -7,15 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>{% block title %}Butterfly Fashion{% endblock %}</title>
+  <title>{% block title %}butterfly fashion.{% endblock %}</title>
 
-  <link rel="icon" type="image/x-icon" href="{% static 'shop/images/logo/butterflylogo.png' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'shop/images/logo/logo-favicon.png' %}">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
   <link href="{% static 'shop/css/base.css' %}" rel="stylesheet"/>
-  
   {% block styles %}{% endblock %}
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -24,59 +24,48 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="{% block body_class %}{% endblock %}">
+<body data-page="{% block page_name %}{% endblock %}">
   
-  <section id="header">
-    <a href="{% url 'home' %}"><img src="{% static 'shop/images/logo/butterflylogo.png' %}" class="logo" alt="butterfly fashion logo"></a>
-    <div>
-      <ul id="navbar">
-        <li class="{% if page_name == 'home' %}active{% endif %}"><a href="{% url 'home' %}">home</a></li>
-        <li class="dropdown {% if page_name == 'shop' %}active{% endif %}">
-            <a href="#" id="dropbtn">shop</a>
-            <div class="dropdown-content">
+  <header id="header">
+    <a href="{% url 'home' %}" class="header-logo">
+      <img src="{% static 'shop/images/logo/bf-wordmark.png' %}" alt="Butterfly Fashion logo">
+    </a>
+    <nav id="navbar">
+      <ul>
+        <li><a href="{% url 'home' %}">home</a></li>
+        <li class="dropdown">
+          <a href="#">shop</a>
+          <div class="dropdown-content">
             <a href="{% url 'preteens' %}">preteens</a>
             <a href="{% url 'teens' %}">teens</a>
-            </div>
+          </div>
         </li>
-        <li class="{% if page_name == 'blog' %}active{% endif %}"><a href="{% url 'blog' %}">blog</a></li>
-        <li class="{% if page_name == 'about' %}active{% endif %}"><a href="{% url 'about' %}">about</a></li>
-        <li class="{% if page_name == 'help' %}active{% endif %}"><a href="{% url 'help' %}">help</a></li>
-        <li><a class="lecart" href="{% url 'cart' %}"><ion-icon name="bag-handle-outline"></ion-icon><span id="cart-count">0</span></a></li>
-        </ul>
+        <li><a href="{% url 'blog' %}">blog</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="{% url 'about' %}" class="impact-link">
+        <ion-icon name="leaf-outline"></ion-icon>
+        <span>our impact</span>
+      </a>
+      <a href="{% url 'cart' %}" class="cart-link">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+        <span id="cart-count">0</span>
+      </a>
     </div>
-  </section>
+  </header>
 
   <main>
     {% block content %}{% endblock %}
   </main>
   
   <footer class="section-p1">
-    <div class="col">
-      <img src="{% static 'shop/images/logo/butterflylogo.png' %}" alt="butterfly fashion logo">
-      <h4>contact</h4>
-      <p><strong>address:</strong> 90 springfield road, london, WC23 1GX</p>
-      <p><strong>phone:</strong> (+44) 020 7373 0027</p>
-      <p><strong>hours:</strong> 9am - 5pm, monday - saturday</p>
-    </div>
-    <div class="col">
-      <h4>about</h4>
-      <a href="#">about us</a>
-      <a href="#">delivery information</a>
-      <a href="#">privacy policy</a>
-    </div>
-    <div class="col">
-      <h4>my account</h4>
-      <a href="#">sign in</a>
-      <a href="{% url 'cart' %}">view cart</a>
-      <a href="#">my wishlist</a>
-    </div>
     <div class="copyright">
-      <p>© 2025, butterfly fashion</p>
+      <p>© 2025, butterfly fashion.</p>
     </div>
   </footer>
 
   {% block scripts %}{% endblock %}
   
 </body>
-
 </html>

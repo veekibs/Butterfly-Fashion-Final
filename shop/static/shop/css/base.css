@@ -1,221 +1,243 @@
-@import url('https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap');
 
-/* === GLOBAL & TYPOGRAPHY ========================================== */
+/*  STYLE GUIDE & VARIABLES  */
+:root {
+  /* Color Palette */
+  --color-background: #FFFFFF;
+  --color-text: #222222;
+  --color-accent: #FADADD; /* Soft "Glossier" Pink */
+  --color-accent-dark: #f0c2c2;
+  --color-border: #EAEAEA;
+  --color-subtle: #f9f9f9;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/*  GLOBAL & TYPOGRAPHY  */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Rufina', serif;
+  font-family: var(--font-body);
 }
 
 body {
   width: 100%;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
-h1 { font-size: 50px; line-height: 64px; color: black; }
-h2 { font-size: 46px; line-height: 54px; color: black; }
-h4 { font-size: 20px; color: black; }
-h5 { font-size: 20px; color: black; padding-top: 7px; }
-h6 { font-weight: 700; font-size: 12px; }
-p { font-size: 16px; color: black; margin: 15px 0 20px 0; }
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: 1.5rem; }
+p { font-size: 1rem; line-height: 1.6; color: #555; }
+a { color: var(--color-text); text-decoration: none; }
 
 button.normal {
-  font-size: 30px;
+  font-family: var(--font-body);
+  font-size: 1rem;
   font-weight: 600;
   padding: 15px 30px;
-  color: black;
+  color: var(--color-text);
   background-color: white;
-  border-radius: 4px;
+  border-radius: 50px;
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--color-border);
   outline: none;
-  transition: 0.2s;
+  transition: all 0.3s ease;
+}
+button.normal:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
 }
 
-/* === HEADER & NAVBAR ========================= */
+/*  HEADER & NAVBAR  */
 #header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 80px;
-  background-color: white;
-  box-shadow: 0 5px 15px #c4c4c4;
-  position: sticky;
+  padding: 15px 40px;
+  background-color: transparent;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 999;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
 }
 
-#header a img {
-  width: 120px;
+#header.header-scrolled {
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 10px 40px;
 }
 
-#navbar {
+#header .header-logo img {
+  width: 200px;
+  transition: width 0.3s ease;
+}
+#header.header-scrolled .header-logo img {
+    width: 160px;
+}
+
+#navbar ul {
   display: flex;
+  list-style: none;
   align-items: center;
 }
 
 #navbar li {
-  list-style: none;
-  padding: 0 20px;
-  position: relative;
+    position: relative; /* Needed for the dropdown */
 }
 
 #navbar li a {
-  text-decoration: none;
-  font-size: 25px;
-  font-weight: 900;
-  color: black;
-  transition: 0.3s ease;
-  position: relative;
-  padding-bottom: 5px;
+  padding: 10px 20px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-text);
 }
 
-/* Default state for the underline (hidden) */
-#navbar li > a::after {
-  content: "";
-  width: 0%; /* Start with no width */
-  height: 2px;
-  background: #ff4278;
-  position: absolute;
-  bottom: -4px;
-  left: 20px;
-  transition: width 0.3s ease;
+#navbar li a:hover {
+    color: var(--color-accent);
 }
 
-/* Hover states (active states yet to be implemented!) */
-#navbar li:hover > a,
-#navbar li.active > a {
-  color: #ff4278;
+.header-actions {
+    display: flex;
+    align-items: center;
 }
-
-#navbar li:hover > a::after,
-#navbar li.active > a::after {
-  width: 30%; /* Make underline appear */
+.header-actions a {
+  margin-left: 25px;
+  font-size: 1.3rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
 }
-
+.header-actions .impact-link span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+.header-actions .cart-link span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 5px;
+}
 
 /* --- Dropdown Styling --- */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  box-shadow: 0 5px 15px #c4c4c4;
-  border-radius: 8px;
-  background-color: white;
-  min-width: 160px;
-}
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  border-radius: 8px;
-}
-.dropdown-content a:hover {
-    background-color: #f9f9f9;
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 100%; /* Position below the "Shop" link */
+    left: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 8px;
+    padding: 10px 0;
 }
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block; /* Show on hover */
+}
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: var(--color-subtle);
 }
 
-/* --- Cart Icon in Navbar --- */
-#navbar li .lecart {
-  padding: 5px;
-  background-color: black;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-#navbar li .lecart ion-icon {
-  vertical-align: sub;
-  padding-right: 4px;
-}
-
-/* === PRODUCT GRID & RESPONSIVE STYLES ============================= */
+/*  PRODUCT GRID  */
 .sectionfp, .secfp {
   text-align: center;
-  padding: 40px 80px;
+  padding: 100px 80px;
 }
 
 .fprocontainer, .fpcontainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 20px;
-  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-top: 40px;
 }
 
 .fpro, .fp {
-  width: calc(25% - 15px);
-  min-width: 250px;
-  padding: 10px 12px;
-  border: 1px solid #cce7d0;
-  border-radius: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-  margin: 15px 0;
-  transition: 0.2s ease;
-  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.3s ease;
+  text-align: left;
 }
 
 .fpro:hover, .fp:hover {
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
 }
 
-.fpro img, .fp img {
-  width: 100%;
-  border-radius: 20px;
+/* This selector is now more generic to work for both .fpro AND .fp */
+.image-container {
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    aspect-ratio: 1 / 1;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out;
+}
+.image-container .model-shot {
+    opacity: 0;
+}
+
+/* This selector now works for both classes on hover */
+.fpro:hover .model-shot, .fp:hover .model-shot {
+    opacity: 1;
+}
+
+/* --- Card Content --- */
+/* This new rule styles the container for the text + cart icon */
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
 .info, .des {
-  text-align: start;
-  padding: 10px 0;
+  padding: 0; /* Remove padding from the inner div */
 }
 
-.info .star ion-icon, .des .star ion-icon {
-  font-size: 12px;
-  color: rgb(243, 181, 25);
-}
-
-.info h4, .des h4 {
-  padding-top: 7px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #088178;
-}
-
+/* This rule makes the cart icon bigger + removes absolute positioning */
 .cart {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 50px;
-  background-color: #e8f6ea;
-  font-weight: 500;
-  color: #088178;
-  border: 1px solid #cce7d0;
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
+  font-size: 1.5rem; /* Bigger icon */
+  color: var(--color-text);
+  transition: color 0.3s ease;
 }
 
-@media (max-width: 992px) {
-  .sectionfp, .secfp { padding: 20px 40px; }
-  .fpro, .fp { width: calc(50% - 10px); }
+.cart:hover {
+    color: var(--color-accent);
 }
 
-@media (max-width: 600px) {
-  .sectionfp, .secfp { padding: 20px; }
-  .fpro, .fp { width: 100%; }
-}
-
-/* === FOOTER ======================================================= */
+/*  FOOTER  */
 footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 40px 80px;
-  background-color: #f9f9f9;
+  padding: 60px 80px;
+  background-color: var(--color-subtle);
+  border-top: 1px solid var(--color-border);
 }
 
 footer .col {
@@ -226,36 +248,28 @@ footer .col {
 }
 
 footer .col img {
-  width: 160px;
-  padding: 15px 0 15px 20px;
-  height: auto;
-  max-width: 100%;
+  width: 200px;
   margin-bottom: 30px;
 }
 
-footer h4 { font-size: 14px; padding-bottom: 20px; }
+footer h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 
-footer p, footer a {
-  font-size: 13px;
-  margin-bottom: 8px;
+footer a {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
   text-decoration: none;
-  color: black;
+  color: #555;
 }
 
-footer .follow {
-  margin-top: 20px;
-}
-
-footer .follow ion-icon {
-  color: grey;
-  padding-right: 4px;
-  cursor: pointer;
-}
-
-footer .colpay img {
-  margin: 10px 0 15px 0;
-  max-width: 300px;
-  max-height: 300px;
-  height: auto;
-  width: auto;
+.copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+    font-size: 0.9rem;
 }

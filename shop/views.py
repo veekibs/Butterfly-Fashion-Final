@@ -7,7 +7,7 @@ from .models import Cart, CartItem, Product, OrderItem, Order
 from .serializers import CartSerializer, ProductSerializer, OrderSerializer
 from django.contrib.auth.models import User 
 
-# === TEMPLATE VIEWS (for rendering HTML pages) ======================================
+# --- TEMPLATE VIEWS (for rendering HTML pages) ---
 
 class HomeView(TemplateView):
     template_name = 'shop/index.html'
@@ -61,18 +61,15 @@ class OrderCompleteView(TemplateView):
         order_id = self.request.session.get('last_order_id')
         if order_id:
             context['order_id'] = order_id
-            # Optional: can remove it from the session after displaying it once
-            # del self.request.session['last_order_id']
         return context
 
-# === API VIEWS ======================================================================
+# --- API VIEWS ---
 
 class ProductViewSet(ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 def get_cart(request):
-    # ... (get_cart function remains the same)
     cart_id = request.session.get('cart_id')
     cart = None
     if cart_id:

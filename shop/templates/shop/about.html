@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}About Us | Butterfly Fashion{% endblock %}
+{% block title %}our impact | butterfly fashion.{% endblock %}
 
 {% block styles %}
   <link href="{% static 'shop/css/about.css' %}" rel="stylesheet"/>
@@ -10,16 +10,21 @@
 
 {% block content %}
 
-<section id="aboutus" class="about-banner"></section>
-<section id="aboutuss" class="about-banner"></section>
-<section id="au" class="about-banner"></section>
-<section id="abt" class="about-banner"></section>
-<section id="abtus" class="about-banner"></section>
-<section id="abus" class="about-banner"></section>
-<section id="abuss" class="about-banner"></section>
-<section id="abussi" class="about-banner"></section>
-<section id="abussie" class="about-banner"></section>
-<section id="abussss" class="about-banner"></section>
-<section id="abusssiee" class="about-banner"></section>
+<div class="snap-container">
+  <section id="aboutus" class="about-banner"></section>
+  <section id="aboutuss" class="about-banner"></section>
+  <section id="au" class="about-banner"></section>
+  <section id="abt" class="about-banner"></section>
+  <section id="abtus" class="about-banner"></section>
+  <section id="abus" class="about-banner"></section>
+  <section id="abuss" class="about-banner"></section>
+  <section id="abussi" class="about-banner"></section>
+  <section id="abussie" class="about-banner"></section>
+  <section id="abussss" class="about-banner"></section>
+</div>
+
+{% block scripts %}
+  <script src="{% static 'shop/js/reveal.js' %}"></script>
+{% endblock %}
 
 {% endblock %}
