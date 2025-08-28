@@ -1,11 +1,13 @@
 # Import necessary Python libraries for handling file paths + environment variables
 import os
 from pathlib import Path
+import dj_database_url
 
 # --- Core Paths and Settings ---
 # Build paths inside the project like this: BASE_DIR / 'subdir'
 # BASE_DIR points to the root folder of the project (bf_backend_v2)
 BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-your-default-key') # Uses an environment variable for security
 
 # A secret key used for cryptographic signing
 # Kept private in production!
@@ -14,10 +16,16 @@ SECRET_KEY = 'django-insecure-&97*1w%=16+j274*jws2yseggontf4eh36os@cw+jjikn^&vwq
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True shows detailed error pages
 # Set to False for a live website
-DEBUG = True
+# Set DEBUG to False for production, but allow it to be overridden
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # A list of allowed hostnames/domains for this site
 ALLOWED_HOSTS = []
+
+# Add a setting to get the Render URL when deployed
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Points to the main urls.py file for the project
 ROOT_URLCONF = 'butterfly_api.urls'
@@ -37,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
     # Third-party apps
@@ -51,6 +60,7 @@ INSTALLED_APPS = [
 # Order is important!!!
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware', # Manages user sessions
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware', # Adds CSRF protection
@@ -62,11 +72,12 @@ MIDDLEWARE = [
 # --- Database ---
 # Database configuration
 # Default is a simple SQLite3 file
+# Production Database Configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        conn_max_age=600
+    )
 }
 
 # --- Templates ---
@@ -98,6 +109,13 @@ STATICFILES_DIRS = [
 
 # This tells Django where to collect all static files into
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# This tells WhiteNoise to look for files in the staticfiles directory
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # --- Internationalisation & Password Validation (Standard) ---
 LANGUAGE_CODE = 'en-us'
