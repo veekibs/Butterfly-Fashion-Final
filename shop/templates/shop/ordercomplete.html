@@ -1,15 +1,22 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
 
+{# This block defines the unique title for the browser tab #}
 {% block title %}order confirmation | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the order confirmation page #}
 {% block styles %}
   <link href="{% static 'shop/css/ordercomplete.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the 'shop' link as active #}
 {% block page_name %}ordercomplete{% endblock %}
 
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
+
 <section id="landing"></section>
 
 <section id="breadcrumb">
@@ -21,14 +28,19 @@
   </ul>
 </section>
 
+{# The main confirmation message box #}
 <section id="confirmation">
   <h2>thank you for your order!</h2>
   <h3>a confirmation has been sent to your email.</h3>
   
+  {# This conditional block checks if an 'order_id' was passed from the view #}
+  {# It only shows the "Create Account" form if the user just completed a guest checkout #}
   {% if order_id %}
   <div id="account-creation-section">
     <h4>optional: create an account to save your details for next time!</h4>
+    {# This form's submission is handled by ordercomplete.js #}
     <form id="create-account-form">
+      {# This hidden input securely passes the order ID to the JavaScript without being visible to the user #}
       <input type="hidden" id="order-id" value="{{ order_id }}">
       <div style="margin: 10px 0;">
         <label for="password">choose a password:</label><br>
@@ -50,6 +62,7 @@
 
 {% endblock %}
 
+{# This block loads the page-specific JavaScript for handling the account creation form #}
 {% block scripts %}
   <script src="{% static 'shop/js/ordercomplete.js' %}"></script>
 {% endblock %}

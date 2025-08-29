@@ -1,16 +1,27 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file. #}
 {% extends 'shop/base.html' %}
+
+{# This tag is required to use the {% static %} template tag for linking to CSS, JS, and image files. #}
 {% load static %}
 
-{% block title %}our impact | butterfly fashion.{% endblock %}
 
+{# This block defines the unique title that will appear in the browser tab for this specific page. #}
+{% block title %}Our Impact | Butterfly Fashion{% endblock %}
+
+
+{# This block links to the page-specific stylesheet for the "About Us" page. #}
 {% block styles %}
   <link href="{% static 'shop/css/about.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 
+{# This is the main content block that will be inserted into the base.html template. #}
 {% block content %}
 
+{# This container enables the 'snap-to' scrolling effect provided by the CSS. #}
 <div class="snap-container">
+  {# Each of these sections is a full-screen banner with a unique background image defined in about.css. #}
+  {# The 'about-banner' class provides the shared styling for all of them. #}
   <section id="aboutus" class="about-banner"></section>
   <section id="aboutuss" class="about-banner"></section>
   <section id="au" class="about-banner"></section>
@@ -23,6 +34,8 @@
   <section id="abussss" class="about-banner"></section>
 </div>
 
+{# This block loads the page-specific JavaScript for this page. #}
+{# It is defined here instead of the <head> to ensure it runs after the HTML content has loaded. #}
 {% block scripts %}
   <script src="{% static 'shop/js/reveal.js' %}"></script>
 {% endblock %}

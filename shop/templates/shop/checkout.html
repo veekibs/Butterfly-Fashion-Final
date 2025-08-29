@@ -1,14 +1,20 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
 
-{% block title %}checkout | butterfly fashion,{% endblock %}
+{# This block defines the unique title for the browser tab #}
+{% block title %}checkout | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the checkout page #}
 {% block styles %}
   <link href="{% static 'shop/css/checkout.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the 'shop' link as active #}
 {% block page_name %}cart{% endblock %}
 
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 <section id="landing"></section>
 
@@ -21,8 +27,10 @@
   </ul>
 </section>
 
+{# The main container for the two-column checkout layout #}
 <div class="checkout-container">
 
+    {# The left column containing the main form for shipping + payment details #}
     <div class="shipping-address">
         <form id="checkout-form">
             <h2>shipping address</h2>
@@ -71,9 +79,11 @@
         </form>
     </div>
 
+    {# The right column containing the order summary #}
     <div class="order-summary">
         <h2>order summary</h2>
         <table>
+            {# The checkout.js file will find this element by its ID + fill it with a summary of cart items #}
             <tbody id="checkout-summary-body">
                 <tr><td>loading...</td></tr>
             </tbody>
@@ -85,13 +95,16 @@
             </tfoot>
         </table>
         
+        {# This div is a placeholder where checkout.js will display the user's selected charity #}
         <div id="charity-donation-display" style="display: none;"></div>
         
+        {# This button is linked to the form on the left by its 'form' attribute #}
         <button type="submit" form="checkout-form">place order</button>
     </div>
 </div>
 {% endblock %}
 
+{# This block loads the page-specific JavaScript for the checkout page #}
 {% block scripts %}
   <script src="{% static 'shop/js/checkout.js' %}"></script>
 {% endblock %}

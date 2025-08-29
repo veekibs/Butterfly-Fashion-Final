@@ -1,29 +1,41 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
 
+{# This block defines the unique title for the browser tab #}
 {% block title %}new arrivals | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the new arrivals page #}
 {% block styles %}
   <link href="{% static 'shop/css/newarrivals.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the 'shop' link as active #}
 {% block page_name %}newarrivals{% endblock %}
+
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# The main hero banner section at the top of the page #}
 <section id="na"></section>
 
+{# The container for the "New Arrivals" preteen product grid #}
 <section id="fproduct" class="sectionfp">
   <h2>new arrivals</h2>
   <p>for preteens (11-14yrs)</p>
+  {# This empty div will be found by script.js and dynamically filled with new arrival products #}
   <div class="fprocontainer">
-      </div>
+  </div>
 </section>
 
+{# The container for the "New Arrivals" teen product grid #}
 <section id="fproductt" class="secfp">
   <h2>new arrivals</h2>
   <p>for teenagers (15-17yrs)</p>
+  {# This empty div will also be filled by script.js #}
   <div class="fpcontainer">
-      </div>
+  </div>
 </section>
 
 {% endblock %}

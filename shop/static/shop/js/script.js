@@ -56,13 +56,13 @@ window.addEventListener('scroll', () => {
  */
 async function fetchProducts() {
     try {
-        const response = await fetch('/api/products/');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        return await response.json();
+        const response = await fetch('/api/products/'); // fetch products from server
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`); // check for errors
+        return await response.json(); // return JSON if successful
     } catch (error) {
-        console.error('Could not fetch products:', error);
-        displayErrorMessage();
-        return null;
+        console.error('Could not fetch products:', error); // log errors
+        displayErrorMessage(); // show error message in UI
+        return null; // return null on failure
     }
 }
 
@@ -71,23 +71,23 @@ async function fetchProducts() {
  * @param {Array} products - The array of all product objects
  */
 function renderProducts(products) {
-    const page = document.body.dataset.page;
+    const page = document.body.dataset.page; // get current page from body data attribute
     switch (page) {
-        case 'home':
+        case 'home': // homepage shows featured products
             const preteenContainerHome = document.querySelector('#fproduct .fprocontainer');
             const teenContainerHome = document.querySelector('#fproductt .fpcontainer');
             if (preteenContainerHome) renderProductList(products.filter(p => p.category === 'preteen' && p.is_featured), preteenContainerHome, 'fpro');
             if (teenContainerHome) renderProductList(products.filter(p => p.category === 'teen' && p.is_featured), teenContainerHome, 'fp');
             break;
-        case 'preteens':
+        case 'preteens': // preteens page shows regular preteen products
             const preteenContainer = document.querySelector('.fprocontainer');
             if (preteenContainer) renderProductList(products.filter(p => p.category === 'preteen' && !p.is_new_arrival), preteenContainer, 'fpro');
             break;
-        case 'teens':
+        case 'teens': // teens page shows regular teen products
             const teenContainer = document.querySelector('.fpcontainer');
             if (teenContainer) renderProductList(products.filter(p => p.category === 'teen' && !p.is_new_arrival), teenContainer, 'fp');
             break;
-        case 'newarrivals':
+        case 'newarrivals': // new arrivals page
             const preteenContainerNA = document.querySelector('#fproduct .fprocontainer');
             const teenContainerNA = document.querySelector('#fproductt .fpcontainer');
             if (preteenContainerNA) renderProductList(products.filter(p => p.category === 'preteen' && p.is_new_arrival), preteenContainerNA, 'fpro');
@@ -100,10 +100,10 @@ function renderProducts(products) {
  * Renders a list of products into a given HTML container
  */
 function renderProductList(productList, container, proClass) {
-    if (!container) return;
-    container.innerHTML = '';
+    if (!container) return; // skip if container doesn't exist 
+    container.innerHTML = ''; // clear existing content 
     productList.forEach(product => {
-        container.innerHTML += createProductHtml(product, proClass);
+        container.innerHTML += createProductHtml(product, proClass); // add each product card
     });
 }
 
@@ -111,10 +111,11 @@ function renderProductList(productList, container, proClass) {
  * Creates the HTML string for a single product card, including two images for the hover effect
  */
 function createProductHtml(product, proClass) {
-    const productImage = `/static/${product.image_url}`;
-    const modelImage = product.model_image_url ? `/static/${product.model_image_url}` : productImage;
+    const productImage = `/static/${product.image_url}`; // main product image
+    const modelImage = product.model_image_url ? `/static/${product.model_image_url}` : productImage; // fallback if no model image!
 
     // This now correctly includes both the proClass (fpro/fp) + the sub_category for filtering 
+    // Returns product card HTML
     return `
         <div class="${proClass} ${product.sub_category}" data-product-id="${product.id}">
             <div class="image-container">
@@ -151,13 +152,14 @@ function displayErrorMessage() {
  */
 function setupEventListeners() {
     // This listener is now set up only ONCE per page load
+    // Listens to clicks anywhere in the body 
     document.body.addEventListener('click', function(event) {
-        const addToCartBtn = event.target.closest('.cart');
+        const addToCartBtn = event.target.closest('.cart'); // Check if clicked element is an add-to-cart button
         if (addToCartBtn) {
             const productElement = addToCartBtn.closest('[data-product-id]');
             if (productElement) addToCart(productElement.dataset.productId);
         }
-        const removeFromCartBtn = event.target.closest('.remove-item');
+        const removeFromCartBtn = event.target.closest('.remove-item'); // Check if clicked element is a remove-from-cart button
         if (removeFromCartBtn) {
             removeFromCart(removeFromCartBtn.dataset.itemId);
         }
@@ -169,28 +171,46 @@ function setupEventListeners() {
         checkoutForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         console.log("Checkout form submitted!"); // <- debug
-        await validateCart(event);
+        await validateCart(event); // Validate cart before proceeding
     });
     }
 
-    // Specific listeners for the homepage UX popup
-    const popupContainer = document.getElementById('popup');
-    if (popupContainer) {
-        const arrowUp = popupContainer.querySelector('.arrow-up');
-        const arrowDown = popupContainer.querySelector('.arrow-down');
-        const sendButton = popupContainer.querySelector('.sendbutton');
-        const inputField = popupContainer.querySelector('input[type="text"]');
+    // --- Popup Feedback Logic ---
+    const popup = document.getElementById('popup'); 
+    const stripe = document.getElementById('popup-stripe'); // Top handle
+    const arrow = document.getElementById('popup-arrow'); // Arrow icon
+    const inputField = document.getElementById('feedback-input'); // Feedback input
+    const sendButton = document.getElementById('send-feedback'); // Send button
+    const feedbackMsg = document.getElementById('feedback-msg'); // Message after sending feedback
 
-        if(arrowUp) arrowUp.addEventListener('click', () => popupContainer.classList.remove('minimized'));
-        if(arrowDown) arrowDown.addEventListener('click', () => popupContainer.classList.add('minimized'));
-        if(sendButton) sendButton.addEventListener('click', () => {
-            if (inputField.value.trim() === "") {
-                alert("Please enter a message.");
-            } else {
-                alert('Message sent. Thank you!');
-                inputField.value = '';
-                popupContainer.classList.add('minimized');
+    if (popup && stripe && arrow && inputField && sendButton && feedbackMsg) {
+       // toggle popup/open minimised on stripe click
+        stripe.addEventListener('click', () => {
+            popup.classList.toggle('minimized');
+            popup.classList.toggle('show');
+            arrow.style.transform = popup.classList.contains('minimized') // flip arrow
+                ? 'rotate(0deg)'
+                : 'rotate(180deg)';
+        });
+
+        // Send feedback button click 
+        sendButton.addEventListener('click', () => {
+            if (!inputField.value.trim()) { // if input empty
+                inputField.style.borderColor = '#ff6b6b';
+                inputField.style.animation = 'shake 0.3s'; // shake animation
+                inputField.addEventListener('animationend', () => inputField.style.animation = '');
+                return;
             }
+            feedbackMsg.textContent = '🎉 feedback sent!';
+            feedbackMsg.classList.remove('hidden');
+            sendButton.disabled = true;
+            inputField.disabled = true;
+
+            setTimeout(() => { // minimise popup after short delay
+                popup.classList.add('minimized');
+                popup.classList.remove('show');
+                arrow.style.transform = 'rotate(0deg)';
+            }, 1200);
         });
     }
 
@@ -200,9 +220,9 @@ function setupEventListeners() {
         charitySelect.addEventListener('change', function() {
             const selectedCharity = this.options[this.selectedIndex].text;
             if (this.value !== "0") {
-                localStorage.setItem('selectedCharity', selectedCharity);
+                localStorage.setItem('selectedCharity', selectedCharity); // store selection locally 
             } else {
-                localStorage.removeItem('selectedCharity');
+                localStorage.removeItem('selectedCharity'); // remove if 'select' option chosen
             }
         });
     }
@@ -212,13 +232,14 @@ function setupEventListeners() {
     if (filterItems.length > 0) {
         filterItems.forEach(item => {
             item.addEventListener('click', function() {
-                filterItems.forEach(i => i.classList.remove('active-filter'));
-                this.classList.add('active-filter');
+                filterItems.forEach(i => i.classList.remove('active-filter')); // remove active from other
+                this.classList.add('active-filter'); // highlight clicked filter
 
                 const filterValue = this.dataset.filter;
                 // MUST find the product boxes *inside* the click event
-                const productBoxes = document.querySelectorAll('.fpro, .fp'); 
+                const productBoxes = document.querySelectorAll('.fpro, .fp');  // ALL PRODUCT CARDS
                 
+                // show/hide products depending on filter 
                 productBoxes.forEach(box => {
                     if (filterValue === 'all' || box.classList.contains(filterValue)) {
                         box.style.display = 'block'; // Show
@@ -248,9 +269,9 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-const csrftoken = getCookie('csrftoken');
+const csrftoken = getCookie('csrftoken'); // store csrf token for API requests
 
-// --- CART LOGIC (API DRIVEN) ---
+// --- CART LOGIC ---
 
 /**
  * Adds a product to the server-side cart

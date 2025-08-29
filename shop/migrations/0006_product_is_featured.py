@@ -2,17 +2,20 @@
 
 from django.db import migrations, models
 
-
+# The main migration class
 class Migration(migrations.Migration):
 
     dependencies = [
         ('shop', '0005_alter_product_sub_category'),
     ]
 
+    # The list of database operations to perform
     operations = [
+        # This operation adds a new 'is_featured' field to the Product model
         migrations.AddField(
             model_name='product',
             name='is_featured',
+             # The field is a BooleanField, which can be True or False, and defaults to False
             field=models.BooleanField(default=False),
         ),
     ]

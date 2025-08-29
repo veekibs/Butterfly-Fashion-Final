@@ -1,23 +1,33 @@
+{# This template inherits its main structure (header, footer, etc.) from the base.html file #}
 {% extends 'shop/base.html' %}
+{# This tag is required to use the {% static %} template tag for linking files #}
 {% load static %}
 
+{# This block defines the unique title for the browser tab #}
 {% block title %}login | butterfly fashion.{% endblock %}
 
+{# This block links to the page-specific stylesheet for the user auth pages #}
 {% block styles %}
   <link href="{% static 'shop/css/users.css' %}" rel="stylesheet"/>
 {% endblock %}
 
+{# This block sets the page name variable, used by the base template to highlight the active navbar link #}
 {% block page_name %}login{% endblock %}
 
 
+{# This is the main content block that will be inserted into base.html #}
 {% block content %}
 
+{# This section can be used for a page-specific banner image, styled in the CSS #}
 <section id="landing"></section>
 
+{# The main container that centers the login form on the page #}
 <div class="auth-container">
     <div class="auth-form">
         <h1>login</h1>
+        {# The login form: its submission is handled by auth.js #}
         <form id="login-form">
+            {# Django's Cross-Site Request Forgery protection token which is essential for security! #}
             {% csrf_token %}
             <div class="form-group">
                 <label for="username">username (your email)</label>
@@ -29,11 +39,13 @@
             </div>
             <button type="submit" class="auth-button">login</button>
         </form>
+        {# A link to switch to the registration page #}
         <p class="auth-switch">don't have an account? <a href="{% url 'register-page' %}">register</a></p>
     </div>
 </div>
 {% endblock %}
 
+{# This block loads the page-specific JavaScript for handling the login form #}
 {% block scripts %}
   <script src="{% static 'shop/js/auth.js' %}"></script>
 {% endblock %}

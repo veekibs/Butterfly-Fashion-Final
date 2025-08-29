@@ -1,5 +1,6 @@
 
 /*  PAGE-SPECIFIC BANNER STYLE  */
+/* Styles for the main hero banner at the top of the blog page */
 #landing {
   background-image: url("../images/blog/girl-talk.jpg");
   height: 60vh; /* Reduced height for a more balanced look */
@@ -15,6 +16,7 @@
   background-position: center center;
 }
 
+/* Styles for the text overlaid on the banner to ensure readability */
 #landing h1 {
     color: #fff; /* White text for better contrast */
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
@@ -29,6 +31,7 @@
 /*  BLOG-SPECIFIC ELEMENTS  */
 
 /* --- Post Filter --- */
+/* The container for the filter buttons */
 .post-filter {
   display: flex;
   justify-content: center;
@@ -37,6 +40,7 @@
   margin: 40px 0;
 }
 
+/* Individual filter buttons */
 .filter-item {
   font-size: 1.5rem;
   font-weight: 600;
@@ -47,6 +51,7 @@
   border: 1px solid var(--color-border);
 }
 
+/* Style for the currently active/hovered filter button */
 .filter-item:hover, .active-filter {
   background-color: #FADADD;
   border: 1px solid #FADADD;
@@ -54,6 +59,7 @@
 }
 
 /* --- Post Grid --- */
+/* The main container for all blog post cards */
 .posts-container {
   display: grid;
   /* Creates a responsive grid that fits as many ~300px columns as possible */
@@ -63,6 +69,7 @@
   padding: 0 80px; /* Use padding from the shared .sectionfp style */
 }
 
+/* A single blog post card */
 .post-box {
   background: white;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -73,16 +80,18 @@
 }
 
 .post-box:hover {
-  transform: translateY(-10px);
+  transform: translateY(-10px); /* Lifts the card slightly on hover */
 }
 
+/* The main image for a blog post */
 .post-img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
   border-radius: 0.5rem;
 }
 
+/* The category label (e.g., "relationships") */
 .category {
   font-size: 0.8rem;
   font-weight: 700;
@@ -91,10 +100,12 @@
   margin-top: 10px;
 }
 
+/* The main title of the blog post */
 .post-title {
   font-size: 1.3rem;
   font-weight: 600;
   color: black;
+  /* These properties truncate the title to a maximum of 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -104,6 +115,7 @@
   text-decoration: none;
 }
 
+/* The publication date */
 .post-date {
   display: block;
   font-size: 0.8rem;
@@ -112,10 +124,12 @@
   color: #777;
 }
 
+/* The short description of the post */
 .post-description {
   font-size: 0.9rem;
   line-height: 1.5rem;
   margin: 10px 0;
+  /* Truncates the description to a maximum of 3 lines */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -123,6 +137,7 @@
   overflow: hidden;
 }
 
+/* The container for the author's profile picture and name */
 .profile {
   display: flex;
   align-items: center;

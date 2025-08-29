@@ -1,4 +1,4 @@
-/* Banner for the landing page */
+/* --- Banner for the landing page --- */
 #preteens {
   background-image: url('../images/banners/preteens-landing.jpg');
   height: 90vh;
@@ -7,16 +7,14 @@
   background-position: center;
 }
 
-/* --- PRETEENS RESPONSIVE STYLES --- */
-
+/* --- RESPONSIVE STYLES for the banners on this page --- */
 @media (max-width: 992px) {
-  #naa, #na {
+  #preteens {
     height: 60vh; /* Shorter banners on tablets */
   }
 }
-
 @media (max-width: 600px) {
-  #naa, #na {
+  #preteens {
     height: 50vh; /* Even shorter on mobile */
   }
 }
@@ -30,9 +28,8 @@
   gap: 1.5rem;
   margin-bottom: 40px;
 }
-
 .filter-item {
-  font-size: 1.5rem;
+  font-size: 1rem; /* Adjusted for a cleaner look */
   font-weight: 600;
   font-family: var(--font-body);
   cursor: pointer;
@@ -42,10 +39,9 @@
   background-color: var(--color-background);
   transition: all 0.3s ease;
 }
-
 .filter-item:hover,
 .filter-item.active-filter {
-  background-color: #FADADD;
+  background-color: var(--color-text); /* Switched to the main text color for a chic look */
   color: white;
-  border-color: #FADADD;
+  border-color: var(--color-text);
 }
