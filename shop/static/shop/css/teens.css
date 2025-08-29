@@ -11,23 +11,6 @@
   background-repeat: no-repeat;
 }
 
-/* --- PAGE-SPECIFIC RESPONSIVE ADJUSTMENTS --- */
-
-/* --- For Tablets (screens smaller than 992px) --- */
-/* This media query applies styles only on screens 992px wide or smaller. */
-@media (max-width: 992px) {
-  #na, #naa {
-    height: 60vh; /* Make banners shorter on tablets */
-  }
-}
-
-/* --- For Mobile Phones (screens smaller than 600px) --- */
-@media (max-width: 600px) {
-  #na, #naa {
-    height: 50vh; /* Make banners even shorter on mobile */
-  }
-}
-
 /* --- PRODUCT FILTER BAR --- */
 /* The container for the filter buttons (e.g., "All", "Tops", "Bottoms") */
 .product-filter {
@@ -58,4 +41,66 @@
   background-color: var(--color-text);
   color: white;
   border-color: var(--color-text);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  #teens {
+    height: 95vh;
+  }
+}
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  #teens {
+    height: 80vh;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  #teens {
+    height: 60vh;
+  }
+  .product-filter {
+    gap: 1rem;
+    margin-bottom: 28px;
+  }
+  .filter-item {
+    font-size: 0.98rem;
+    padding: 7px 16px;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #teens {
+    height: 40vh;
+  }
+  .product-filter {
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 18px;
+  }
+  .filter-item {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  #teens {
+    height: 28vh;
+  }
+  .filter-item {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+    max-width: 98vw;
+  }
 }

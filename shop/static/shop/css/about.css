@@ -33,10 +33,16 @@ html, body {
 #abussie { background-image: url('../images/about/9.jpg'); }
 #abussss { background-image: url('../images/about/10.jpg'); }
 
-/* Responsive adjustments for smaller screens */
+/* --- Responsive Design --- */
+/* Phones (max-width: 768px) */
 @media screen and (max-width: 768px) {
   .about-banner {
-    /* Ensures banners still take up the full height on mobile */
     height: 100vh;
+    background-position: center top;
+    background-size: cover;
+  }
+  .snap-container {
+    height: 100vh;
+    overflow-y: auto; /* Allow native scroll on mobile for better UX */
   }
 }

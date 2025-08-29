@@ -85,26 +85,102 @@
     color: var(--color-text);
 }
 
-/* --- RESPONSIVE STYLES --- */
-@media (max-width: 992px) {
-    .dashboard-container {
-        padding: 30px;
-        margin: 40px 20px; /* Less horizontal margin on tablets */
-    }
+/* --- RESPONSIVE DESIGN --- */
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  .dashboard-container {
+    max-width: 1100px;
+    padding: 60px;
+    margin: 80px auto;
+  }
+  #dash {
+    height: 60vh;
+  }
 }
-@media (max-width: 600px) {
-    #dash {
-        height: 30vh; /* Shorter banner on mobile */
-    }
-    .dashboard-container {
-        padding: 20px;
-        margin: 20px 10px;
-    }
-    .order-history-table {
-        font-size: 0.8rem; /* Smaller font on mobile to fit content */
-    }
-    .order-history-table th, 
-    .order-history-table td {
-        padding: 10px 5px;
-    }
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  .dashboard-container {
+    max-width: 950px;
+    padding: 40px;
+    margin: 60px auto;
+  }
+  #dash {
+    height: 50vh;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .dashboard-container {
+    max-width: 98vw;
+    padding: 28px;
+    margin: 40px 12px;
+  }
+  #dash {
+    height: 36vh;
+  }
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+  .dashboard-header p {
+    font-size: 1rem;
+  }
+  .order-history-table th, 
+  .order-history-table td {
+    padding: 14px 8px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    max-width: 100vw;
+    padding: 16px;
+    margin: 18px 2vw;
+  }
+  #dash {
+    height: 24vh;
+  }
+  .dashboard-header h1 {
+    font-size: 1.3rem;
+  }
+  .dashboard-header p {
+    font-size: 0.95rem;
+  }
+  .order-history-table {
+    font-size: 0.85rem;
+  }
+  .order-history-table th, 
+  .order-history-table td {
+    padding: 8px 3px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .dashboard-container {
+    padding: 8px;
+    margin: 8px 1vw;
+  }
+  #dash {
+    height: 14vh;
+  }
+  .dashboard-header h1 {
+    font-size: 1.05rem;
+  }
+  .dashboard-header p {
+    font-size: 0.85rem;
+  }
+  .order-history-table {
+    font-size: 0.75rem;
+  }
+  .order-history-table th, 
+  .order-history-table td {
+    padding: 5px 1px;
+    font-size: 0.75rem;
+  }
 }

@@ -314,3 +314,121 @@ footer a {
     margin-left: 8px;
     font-family: var(--font-body);
 }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Large desktops (wider than 1440px) */
+@media screen and (min-width: 1440px) {
+  body {
+    font-size: 1.1rem;
+  }
+  .sectionfp, .secfp, footer {
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+}
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  .sectionfp, .secfp, footer {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+  #header {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  #header {
+    padding: 10px 20px;
+  }
+  #header .header-logo img {
+    width: 150px;
+  }
+  .sectionfp, .secfp, footer {
+    padding: 60px 20px;
+  }
+  .fprocontainer, .fpcontainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card-body {
+    padding: 15px;
+  }
+  footer .col img {
+    width: 150px;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 10px;
+  }
+  #header .header-logo img {
+    width: 120px;
+  }
+  #navbar ul {
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    display: none; /* You may want to toggle this with JS for a mobile menu */
+  }
+  .header-actions {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  .sectionfp, .secfp, footer {
+    padding: 40px 5vw;
+  }
+  .fprocontainer, .fpcontainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 20px;
+  }
+  .card-body {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 5vw;
+  }
+  footer .col img {
+    width: 110px;
+    margin-bottom: 20px;
+  }
+  .copyright {
+    margin-top: 20px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.1rem; }
+  p, a, button.normal {
+    font-size: 0.95rem;
+  }
+  .sectionfp, .secfp, footer {
+    padding: 20px 2vw;
+  }
+  .card-body {
+    padding: 8px;
+  }
+  footer .col img {
+    width: 90px;
+  }
+}

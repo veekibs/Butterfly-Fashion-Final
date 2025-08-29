@@ -125,3 +125,136 @@
     font-size: 1rem;
     margin-top: 10px;
 }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  .products-container,
+  #cart-summary {
+    padding-left: 15vw;
+    padding-right: 15vw;
+  }
+  #landing {
+    height: 65vh;
+  }
+}
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  .products-container,
+  #cart-summary {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+  #landing {
+    height: 60vh;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  .products-container,
+  #cart-summary {
+    padding-left: 3vw;
+    padding-right: 3vw;
+  }
+  #landing {
+    height: 40vh;
+  }
+  #charity-box,
+  #totals-box {
+    padding: 20px;
+    border-radius: 30px;
+  }
+  #breadcrumb li a {
+    font-size: 1rem;
+    padding: 0 12px;
+  }
+  .table thead td {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+  .table tbody td {
+    padding: 10px 0;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #landing {
+    height: 28vh;
+    padding: 0 1vw;
+  }
+  .products-container,
+  #cart-summary {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  #breadcrumb {
+    padding: 20px 0;
+  }
+  #breadcrumb li a {
+    font-size: 0.95rem;
+    padding: 0 8px;
+  }
+  .table thead td {
+    font-size: 11px;
+    padding: 8px 0;
+  }
+  .table tbody td {
+    padding: 7px 0;
+    font-size: 0.95rem;
+  }
+  #cart-summary {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  #charity-box,
+  #totals-box {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 14px;
+    border-radius: 18px;
+  }
+  #totals-box button {
+    font-size: 0.98rem;
+    padding: 12px 0;
+  }
+  #charity-select {
+    font-size: 0.98rem;
+    padding: 8px;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  #landing {
+    height: 18vh;
+  }
+  .products-container,
+  #cart-summary {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  #charity-box,
+  #totals-box {
+    padding: 8px;
+    border-radius: 10px;
+  }
+  #totals-box button {
+    font-size: 0.93rem;
+    padding: 10px 0;
+    margin-top: 12px;
+  }
+  #charity-select {
+    font-size: 0.93rem;
+    padding: 6px;
+  }
+  .table thead td,
+  .table tbody td {
+    font-size: 0.9rem;
+  }
+}

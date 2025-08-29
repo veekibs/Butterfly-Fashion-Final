@@ -7,18 +7,6 @@
   background-position: center;
 }
 
-/* --- RESPONSIVE STYLES for the banners on this page --- */
-@media (max-width: 992px) {
-  #preteens {
-    height: 60vh; /* Shorter banners on tablets */
-  }
-}
-@media (max-width: 600px) {
-  #preteens {
-    height: 50vh; /* Even shorter on mobile */
-  }
-}
-
 /* --- PRODUCT FILTER BAR --- */
 .product-filter {
   display: flex;
@@ -44,4 +32,66 @@
   background-color: var(--color-text); /* Switched to the main text color for a chic look */
   color: white;
   border-color: var(--color-text);
+}
+
+/* --- RESPONSIVE STYLES for the banners on this page --- */
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  #preteens {
+    height: 95vh;
+  }
+}
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  #preteens {
+    height: 80vh;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  #preteens {
+    height: 60vh;
+  }
+  .product-filter {
+    gap: 1rem;
+    margin-bottom: 28px;
+  }
+  .filter-item {
+    font-size: 0.98rem;
+    padding: 7px 16px;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #preteens {
+    height: 40vh;
+  }
+  .product-filter {
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 18px;
+  }
+  .filter-item {
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  #preteens {
+    height: 28vh;
+  }
+  .filter-item {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+    max-width: 98vw;
+  }
 }

@@ -93,17 +93,143 @@
   background-color: var(--color-accent-dark);
 }
 
-/* --- NEW RESPONSIVE STYLES --- */
-@media (max-width: 600px) {
-    #landing {
-        height: 40vh; /* Shorter banner on mobile */
-    }
-    #confirmation {
-        padding: 40px 20px;
-        width: 100%;
-        margin: 20px 0;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-    }
+/* --- RESPONSIVE DESIGN --- */
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
+  #landing {
+    height: 65vh;
+  }
+  #confirmation {
+    max-width: 800px;
+    padding: 80px 60px;
+    margin: 60px auto;
+  }
+}
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
+  #landing {
+    height: 60vh;
+  }
+  #confirmation {
+    max-width: 700px;
+    padding: 60px 40px;
+    margin: 40px auto;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  #landing {
+    height: 40vh;
+  }
+  #confirmation {
+    max-width: 98vw;
+    padding: 40px 24px;
+    margin: 28px 1vw;
+  }
+  #confirmation h2 {
+    font-size: 2rem;
+  }
+  #confirmation h3 {
+    font-size: 1.05rem;
+  }
+  #account-creation-section h4 {
+    font-size: 1rem;
+  }
+  #account-creation-section input[type="password"] {
+    padding: 10px;
+    font-size: 0.98rem;
+  }
+  #confirmation button {
+    font-size: 0.98rem;
+    padding: 12px 20px;
+  }
+  #breadcrumb {
+    padding: 24px 0;
+  }
+  #breadcrumb li a {
+    font-size: 0.98rem;
+    padding: 0 12px;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #landing {
+    height: 28vh;
+  }
+  #confirmation {
+    max-width: 100vw;
+    padding: 24px 8px;
+    margin: 14px 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  #confirmation h2 {
+    font-size: 1.3rem;
+  }
+  #confirmation h3 {
+    font-size: 0.98rem;
+  }
+  #account-creation-section h4 {
+    font-size: 0.95rem;
+  }
+  #account-creation-section input[type="password"] {
+    padding: 8px;
+    font-size: 0.95rem;
+  }
+  #confirmation button {
+    font-size: 0.95rem;
+    padding: 10px 10px;
+    margin-top: 18px;
+  }
+  #breadcrumb {
+    padding: 14px 0;
+  }
+  #breadcrumb li a {
+    font-size: 0.95rem;
+    padding: 0 7px;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  #landing {
+    height: 18vh;
+  }
+  #confirmation {
+    padding: 12px 2px;
+    margin: 8px 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  #confirmation h2 {
+    font-size: 1.05rem;
+  }
+  #confirmation h3 {
+    font-size: 0.9rem;
+  }
+  #account-creation-section h4 {
+    font-size: 0.9rem;
+  }
+  #account-creation-section input[type="password"] {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+  #confirmation button {
+    font-size: 0.9rem;
+    padding: 8px 6px;
+    margin-top: 12px;
+  }
+  #breadcrumb {
+    padding: 8px 0;
+  }
+  #breadcrumb li a {
+    font-size: 0.9rem;
+    padding: 0 4px;
+  }
 }

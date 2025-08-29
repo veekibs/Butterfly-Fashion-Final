@@ -9,13 +9,38 @@
 }
 
 /* --- NEW ARRIVALS RESPONSIVE STYLES --- */
-@media (max-width: 992px) {
+
+/* Large desktops (min-width: 1440px) */
+@media screen and (min-width: 1440px) {
   #na {
-    height: 60vh; /* Shorter banner on tablets */
+    height: 95vh;
   }
 }
-@media (max-width: 600px) {
+
+/* Laptops and desktops (1025px - 1439px) */
+@media screen and (max-width: 1439px) {
   #na {
-    height: 50vh; /* Even shorter on mobile */
+    height: 80vh;
+  }
+}
+
+/* Tablets (769px - 1024px) */
+@media screen and (max-width: 1024px) {
+  #na {
+    height: 60vh;
+  }
+}
+
+/* Phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  #na {
+    height: 40vh;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  #na {
+    height: 28vh;
   }
 }

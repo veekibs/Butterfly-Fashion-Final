@@ -73,3 +73,29 @@
 .auth-switch {
     margin-top: 25px;
 }
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+/* --- For Tablets (screens smaller than 768px) --- */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 40px 20px; /* Reduce side padding */
+    }
+}
+
+/* --- For Mobile Phones (screens smaller than 600px) --- */
+@media (max-width: 600px) {
+    #landing, #landingg {
+        height: 30vh; /* Make banners shorter on mobile */
+    }
+    .auth-container {
+        padding: 20px 0; /* Remove side padding for a full-width feel */
+        min-height: auto;
+    }
+    .auth-form {
+        width: 100%;
+        max-width: 100%;
+        border: none; /* Remove border on mobile */
+        box-shadow: none; /* Remove shadow on mobile */
+        padding: 20px;
+    }
+}
