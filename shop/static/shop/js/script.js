@@ -20,6 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // On simple static pages (like About), just set up the basic listeners
         setupEventListeners();
     }
+
+    // --- MOBILE HAMBURGER MENU ---
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent click from bubbling to document
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Click anywhere outside to close
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+        }
+    });
 });
 
 // This is the corresponding initializePage function that now handles its own event listeners
@@ -247,6 +263,34 @@ function setupEventListeners() {
                         box.style.display = 'none'; // Hide
                     }
                 });
+            });
+        });
+    }
+
+    // NEW MOBILE MENU LOGIC 
+    const menuOpen = document.getElementById('mobile-menu-open');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const mobileNav = document.getElementById('mobile-nav'); 
+    const navbar = document.getElementById('navbar');
+    const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
+
+    if (menuOpen && navbar) {
+        menuOpen.addEventListener('click', () => {
+            navbar.classList.add('active');
+        });
+    }
+
+    if (menuClose && navbar) {
+        menuClose.addEventListener('click', () => {
+            navbar.classList.remove('active');
+        });
+    }
+
+    // CLOSE THE MENU WHEN A LINK IS CLICKED 
+    if (mobileNavLinks.length > 0 && mobileNav) {
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
             });
         });
     }

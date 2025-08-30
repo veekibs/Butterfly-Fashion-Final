@@ -6,19 +6,23 @@ html, body {
 }
 
 /* This container enables the 'snap-to' scrolling effect */
+/* Desktop: keep full-height snap sections */
 .snap-container {
-  scroll-snap-type: y mandatory; /* Forces the viewport to snap to the start of each section on the Y-axis */
-  overflow-y: hidden; /* Hide native scroll so user controls it */
-  height: 100vh; /* Set the container to the full height of the viewport */
+  scroll-snap-type: y mandatory;
+  overflow-y: hidden;
+  height: 100vh;
 }
 
 /* This is the shared style for each full-screen image section */
+/* --- About page banners --- */
 .about-banner {
-  height: 100vh; /* Each section takes up the full viewport height */
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  scroll-snap-align: start; /* Each banner is a snap point */
+  max-width: 100%;      /* Don’t exceed viewport width */
+  height: auto;         /* Let content size naturally on mobile */
+  min-height: 50vh;     /* Keep them reasonably big */
+  background-size: contain;  /* Scale image to fit horizontally */
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
 /* --- Specific background images for each banner section --- */
@@ -34,15 +38,17 @@ html, body {
 #abussss { background-image: url('../images/about/10.jpg'); }
 
 /* --- Responsive Design --- */
-/* Phones (max-width: 768px) */
+/* Mobile (phones/tablets) */
 @media screen and (max-width: 768px) {
-  .about-banner {
-    height: 100vh;
-    background-position: center top;
-    background-size: cover;
-  }
   .snap-container {
-    height: 100vh;
-    overflow-y: auto; /* Allow native scroll on mobile for better UX */
+    height: auto;
+    overflow-y: auto;
+    scroll-snap-type: none;  /* Disable snap on mobile */
+  }
+
+  .about-banner {
+    padding: 0 1rem;      /* Add some horizontal breathing room */
+    min-height: 50vh;
+    background-size: contain;  /* Make sure full image fits */
   }
 }

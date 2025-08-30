@@ -17,10 +17,11 @@ SECRET_KEY = 'django-insecure-&97*1w%=16+j274*jws2yseggontf4eh36os@cw+jjikn^&vwq
 # DEBUG = True shows detailed error pages
 # Set to False for a live website
 # Set DEBUG to False for production, but allow it to be overridden
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
 # A list of allowed hostnames/domains for this site
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Add a setting to get the Render URL when deployed
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
