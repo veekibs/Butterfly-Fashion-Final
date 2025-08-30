@@ -1,10 +1,11 @@
 /* --- Banner for the landing page --- */
 #preteens {
   background-image: url('../images/banners/preteens-landing.jpg');
-  height: 90vh;
+  height: 50vh;
   width: 100%;
-  background-size: cover;
-  background-position: center;
+  background-size: cover; /* scale image to cover area */
+  background-position: center center; /* center the image */
+  background-repeat: no-repeat;
 }
 
 /* --- PRODUCT FILTER BAR --- */
@@ -34,64 +35,28 @@
   border-color: var(--color-text);
 }
 
+/* --- PRODUCT GRID --- */
+.fprocontainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-top: 40px;
+}
+
 /* --- RESPONSIVE STYLES for the banners on this page --- */
 
-/* Large desktops (min-width: 1440px) */
-@media screen and (min-width: 1440px) {
-  #preteens {
-    height: 95vh;
-  }
-}
-
-/* Laptops and desktops (1025px - 1439px) */
-@media screen and (max-width: 1439px) {
-  #preteens {
-    height: 80vh;
-  }
-}
-
-/* Tablets (769px - 1024px) */
+/* Product cards responsive */
 @media screen and (max-width: 1024px) {
-  #preteens {
-    height: 60vh;
-  }
-  .product-filter {
-    gap: 1rem;
-    margin-bottom: 28px;
-  }
-  .filter-item {
-    font-size: 0.98rem;
-    padding: 7px 16px;
+  .fprocontainer {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 20px;
   }
 }
 
-/* Phones (max-width: 768px) */
 @media screen and (max-width: 768px) {
-  #preteens {
-    height: 40vh;
-  }
-  .product-filter {
-    flex-direction: column;
-    gap: 0.7rem;
-    margin-bottom: 18px;
-  }
-  .filter-item {
-    font-size: 0.95rem;
-    padding: 6px 12px;
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
-  }
-}
-
-/* Extra small devices (max-width: 480px) */
-@media screen and (max-width: 480px) {
-  #preteens {
-    height: 28vh;
-  }
-  .filter-item {
-    font-size: 0.9rem;
-    padding: 5px 8px;
-    max-width: 98vw;
+  .fprocontainer {
+    grid-template-columns: 1fr; /* 1 column on phones */
+    gap: 15px;
+    padding: 20px; /* optional padding for smaller screens */
   }
 }

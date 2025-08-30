@@ -1,41 +1,35 @@
-
-/* --- PAGE-SPECIFIC BANNER STYLES --- */
-
-/* This rule styles the banner that appears above the "Bottoms" section */
+/* --- PAGE BANNER --- */
 #teens {
   background-image: url('../images/banners/teens-landing.jpg');
   width: 100%;
-  height: 90vh;
-  background-size: cover;
-  background-position: center;
+  height: 50vh;          
+  background-size: cover;   /* image always covers container */
+  background-position: center center;
   background-repeat: no-repeat;
 }
 
 /* --- PRODUCT FILTER BAR --- */
-/* The container for the filter buttons (e.g., "All", "Tops", "Bottoms") */
 .product-filter {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allows buttons to wrap onto the next line on small screens */
-  gap: 1.5rem; /* Space between filter buttons */
+  flex-wrap: wrap;
+  gap: 1.5rem;
   margin-bottom: 40px;
 }
 
-/* An individual filter button */
 .filter-item {
-  font-size: 1rem; /* Adjusted for a cleaner look */
+  font-size: 1rem;
   font-weight: 600;
   font-family: var(--font-body);
   cursor: pointer;
   padding: 8px 20px;
-  border-radius: 50px; /* Pill shape. */
+  border-radius: 50px;
   border: 1px solid var(--color-border);
   background-color: var(--color-background);
   transition: all 0.3s ease;
 }
 
-/* Styles for the currently active/hovered filter button */
 .filter-item:hover,
 .filter-item.active-filter {
   background-color: var(--color-text);
@@ -43,64 +37,28 @@
   border-color: var(--color-text);
 }
 
-/* --- RESPONSIVE DESIGN --- */
-
-/* Large desktops (min-width: 1440px) */
-@media screen and (min-width: 1440px) {
-  #teens {
-    height: 95vh;
-  }
+/* --- PRODUCT GRID --- */
+.fpcontainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding-top: 40px;
 }
 
-/* Laptops and desktops (1025px - 1439px) */
-@media screen and (max-width: 1439px) {
-  #teens {
-    height: 80vh;
-  }
-}
-
-/* Tablets (769px - 1024px) */
+/* --- RESPONSIVE PRODUCT GRID --- */
 @media screen and (max-width: 1024px) {
-  #teens {
-    height: 60vh;
-  }
-  .product-filter {
-    gap: 1rem;
-    margin-bottom: 28px;
-  }
-  .filter-item {
-    font-size: 0.98rem;
-    padding: 7px 16px;
+  .fpcontainer {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 20px;
+    padding: 20px;
   }
 }
 
-/* Phones (max-width: 768px) */
 @media screen and (max-width: 768px) {
-  #teens {
-    height: 40vh;
-  }
-  .product-filter {
-    flex-direction: column;
-    gap: 0.7rem;
-    margin-bottom: 18px;
-  }
-  .filter-item {
-    font-size: 0.95rem;
-    padding: 6px 12px;
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
+  .fpcontainer {
+    grid-template-columns: 1fr; /* 1 column on phones */
+    gap: 15px;
+    padding: 15px;
   }
 }
 
-/* Extra small devices (max-width: 480px) */
-@media screen and (max-width: 480px) {
-  #teens {
-    height: 28vh;
-  }
-  .filter-item {
-    font-size: 0.9rem;
-    padding: 5px 8px;
-    max-width: 98vw;
-  }
-}

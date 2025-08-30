@@ -1,14 +1,13 @@
 /* --- Page Banner --- */
 #landing {
   background-image: url("../images/banners/your-cart.jpg");
-  height: 60vh;
   width: 100%;
+  height: 60vh;
   background-size: cover;
   background-position: center;
 }
 
 /* --- Breadcrumb Navigation --- */
-/* The container for the step-by-step checkout navigation */
 #breadcrumb {
   display: flex;
   justify-content: center;
@@ -24,32 +23,42 @@
   padding: 0 20px;
   font-size: 1.2rem;
 }
-/* Highlights the current step in the breadcrumb trail */
 #breadcrumb li:first-child a {
   color: black;
   font-weight: bold;
 }
-/* Adds a '>' separator between breadcrumb items */
 #breadcrumb li a::before {
   content: ">";
   position: absolute;
   left: 0;
 }
-#breadcrumb li:first-child a::before {
-  content: none; /* Removes the separator from the first item */
-}
+#breadcrumb li:first-child a::before { content: none; }
 
 /* --- Cart & Totals Tables --- */
-/* The main container for the product list table */
 .products-container {
     padding: 20px 80px;
 }
-/* The table element for displaying cart items */
+
+/* Make table scrollable */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+/* Table styles */
 .table {
     width: 100%;
     border-collapse: collapse;
+  min-width: 600px; /* Ensures horizontal scroll if needed */
 }
-/* Styling for the table header row (e.g., "Product", "Price") */
 .table thead td {
     font-weight: 700;
     text-transform: uppercase;
@@ -58,33 +67,30 @@
     border-bottom: 1px solid #e2e9e1;
     text-align: left;
 }
-/* Styling for the cells in the table body */
 .table tbody td {
     padding: 15px 0;
     border-bottom: 1px solid #e2e9e1;
     vertical-align: middle;
 }
-/* The remove item icon */
 .table tbody ion-icon {
     color: #000000;
     cursor: pointer;
 }
 
-/* The main container for the summary section at the bottom of the page */
+/* Cart summary section */
 #cart-summary {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allows items to wrap onto the next line on smaller screens */
+  flex-wrap: wrap;
     padding: 40px 80px;
+  gap: 20px;
 }
-/* Shared style for the two boxes in the summary section */
 #charity-box, #totals-box {
     width: 48%;
     border: 1px solid #e2e9e1;
     padding: 30px;
     border-radius: 50px;
 }
-/* The table inside the totals box */
 #totals-box table {
     width: 100%;
     border-collapse: collapse;
@@ -93,14 +99,10 @@
     padding: 10px 0;
     border-bottom: 1px solid #e2e9e1;
 }
-/* Aligns the price to the right */
-#totals-box table td:last-child {
-    text-align: right;
-}
-/* The main "Proceed to Checkout" button */
+#totals-box table td:last-child { text-align: right; }
 #totals-box button {
-    background-color: var(--color-accent); /* soft pink */
-    color: var(--color-text); /* Soft black text */
+  background-color: var(--color-accent);
+  color: var(--color-text);
     padding: 15px 30px;
     border-radius: 50px;
     font-size: 1rem;
@@ -109,16 +111,12 @@
     cursor: pointer;
     width: 100%;
     margin-top: 20px;
-    /* This makes the color change smooth */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 #totals-box button:hover {
-    /* On hover, change to the darker pink + make the text white */
     background-color: var(--color-accent-dark);
     color: white; 
 }
-/* The dropdown for selecting a charity */
 #charity-select {
     width: 100%;
     padding: 10px;
@@ -128,133 +126,107 @@
 
 /* --- RESPONSIVE DESIGN --- */
 
-/* Large desktops (min-width: 1440px) */
+/* Large desktops (1440px+) */
 @media screen and (min-width: 1440px) {
   .products-container,
-  #cart-summary {
-    padding-left: 15vw;
-    padding-right: 15vw;
-  }
-  #landing {
-    height: 65vh;
-  }
+  #cart-summary { padding-left: 15vw; padding-right: 15vw; }
+  #landing { height: 65vh; }
 }
 
-/* Laptops and desktops (1025px - 1439px) */
+/* Laptops/desktops (1025px - 1439px) */
 @media screen and (max-width: 1439px) {
   .products-container,
-  #cart-summary {
-    padding-left: 6vw;
-    padding-right: 6vw;
-  }
-  #landing {
-    height: 60vh;
-  }
+  #cart-summary { padding-left: 6vw; padding-right: 6vw; }
+  #landing { height: 60vh; }
 }
 
 /* Tablets (769px - 1024px) */
 @media screen and (max-width: 1024px) {
   .products-container,
+  #cart-summary { padding-left: 3vw; padding-right: 3vw; }
+  #landing { height: 40vh; }
+
   #cart-summary {
-    padding-left: 3vw;
-    padding-right: 3vw;
+    flex-direction: column;
+    gap: 20px;
   }
-  #landing {
-    height: 40vh;
-  }
-  #charity-box,
-  #totals-box {
+  #charity-box, #totals-box {
+    width: 100%;
     padding: 20px;
     border-radius: 30px;
   }
-  #breadcrumb li a {
-    font-size: 1rem;
-    padding: 0 12px;
-  }
-  .table thead td {
-    font-size: 12px;
-    padding: 12px 0;
-  }
-  .table tbody td {
-    padding: 10px 0;
-  }
+
+  #breadcrumb li a { font-size: 1rem; padding: 0 12px; }
+  .table thead td { font-size: 12px; padding: 12px 0; }
+  .table tbody td { padding: 10px 0; }
 }
 
 /* Phones (max-width: 768px) */
 @media screen and (max-width: 768px) {
-  #landing {
-    height: 28vh;
-    padding: 0 1vw;
-  }
+  #landing { height: 28vh; padding: 0 1vw; }
   .products-container,
-  #cart-summary {
-    padding-left: 2vw;
-    padding-right: 2vw;
-  }
-  #breadcrumb {
-    padding: 20px 0;
-  }
-  #breadcrumb li a {
-    font-size: 0.95rem;
-    padding: 0 8px;
-  }
-  .table thead td {
-    font-size: 11px;
-    padding: 8px 0;
-  }
-  .table tbody td {
-    padding: 7px 0;
-    font-size: 0.95rem;
-  }
-  #cart-summary {
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  #charity-box,
-  #totals-box {
+  #cart-summary { padding-left: 2vw; padding-right: 2vw; }
+
+  #breadcrumb { padding: 20px 0; }
+  #breadcrumb li a { font-size: 0.95rem; padding: 0 8px; }
+
+  .table thead td { font-size: 11px; padding: 8px 0; }
+  .table tbody td { padding: 7px 0; font-size: 0.95rem; }
+
+  #charity-box, #totals-box {
     width: 100%;
-    margin-bottom: 18px;
     padding: 14px;
     border-radius: 18px;
   }
-  #totals-box button {
-    font-size: 0.98rem;
-    padding: 12px 0;
+  #totals-box button { font-size: 0.98rem; padding: 12px 0; }
+  #charity-select { font-size: 0.98rem; padding: 8px; }
+
+  /* Table tweaks for mobile */
+  .table thead td,
+  .table tbody td {
+      font-size: 0.85rem;  /* smaller font so text isn't squashed */
+      padding: 10px 6px;   /* more breathing room inside cells */
   }
-  #charity-select {
-    font-size: 0.98rem;
-    padding: 8px;
+  .table tbody ion-icon {
+      font-size: 1rem;     /* icons slightly smaller */
+  }
+
+  #totals-box {
+    flex-direction: column;
+      gap: 30px; /* more space between charity and totals boxes */
+      padding-top: 30px;
+      padding-bottom: 30px;
+  }
+  #charity-box,
+  #totals-box {
+      padding: 20px 18px; /* slightly more padding inside the boxes */
   }
 }
 
 /* Extra small devices (max-width: 480px) */
 @media screen and (max-width: 480px) {
-  #landing {
-    height: 18vh;
-  }
+  #landing { height: 18vh; }
   .products-container,
-  #cart-summary {
-    padding-left: 1vw;
-    padding-right: 1vw;
+  #cart-summary { padding-left: 1vw; padding-right: 1vw; }
+
+  #charity-box, #totals-box { padding: 8px; border-radius: 10px; }
+  #totals-box button { font-size: 0.93rem; padding: 10px 0; margin-top: 12px; }
+  #charity-select { font-size: 0.93rem; padding: 6px; }
+  .table thead td, .table tbody td { font-size: 0.9rem; }
+
+  .table thead td,
+  .table tbody td {
+      font-size: 0.8rem;
+      padding: 8px 4px;
+  }
+
+  #totals-box {
+      gap: 25px;
+      padding-top: 20px;
+      padding-bottom: 20px;
   }
   #charity-box,
   #totals-box {
-    padding: 8px;
-    border-radius: 10px;
-  }
-  #totals-box button {
-    font-size: 0.93rem;
-    padding: 10px 0;
-    margin-top: 12px;
-  }
-  #charity-select {
-    font-size: 0.93rem;
-    padding: 6px;
-  }
-  .table thead td,
-  .table tbody td {
-    font-size: 0.9rem;
+      padding: 12px 10px; /* still comfortable on tiny screens */
   }
 }

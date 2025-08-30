@@ -2,10 +2,11 @@
 /* A shorter + decorative banner for the top of the dashboard page */
 #dash {
   background-image: url("../images/banners/user-dashboard.jpg");
-  height: 50vh;
   width: 100%;
+  height: 50vh;          
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /* --- Main Dashboard Container --- */
@@ -85,8 +86,20 @@
     color: var(--color-text);
 }
 
-/* --- RESPONSIVE DESIGN --- */
+/* Make order table scrollable on smaller screens */
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    margin-top: 20px;
+}
 
+/* Add padding inside table cells for readability */
+.order-history-table th,
+.order-history-table td {
+    padding: 15px 10px;
+}
+
+/* --- RESPONSIVE DESIGN --- */
 /* Large desktops (min-width: 1440px) */
 @media screen and (min-width: 1440px) {
   .dashboard-container {
@@ -145,7 +158,7 @@
     height: 24vh;
   }
   .dashboard-header h1 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
   .dashboard-header p {
     font-size: 0.95rem;
@@ -170,7 +183,7 @@
     height: 14vh;
   }
   .dashboard-header h1 {
-    font-size: 1.05rem;
+    font-size: 3rem;
   }
   .dashboard-header p {
     font-size: 0.85rem;

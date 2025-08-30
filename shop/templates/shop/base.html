@@ -38,65 +38,79 @@
 <body data-page="{% block page_name %}{% endblock %}">
   
   {# The main header, which will appear on every page. #}
+  <!-- HEADER -->
   <header id="header">
+  <!-- Logo -->
     <a href="{% url 'home' %}" class="header-logo">
       <img src="{% static 'shop/images/logo/bf-wordmark.png' %}" alt="Butterfly Fashion logo">
     </a>
 
-    <!-- Hamburger button -->
-    <button id="hamburger">
-        <ion-icon name="menu-outline"></ion-icon>
-    </button>
-
-    <!-- Nav + actions wrapper -->
-    <div id="mobile-menu">
+  <!-- Desktop Navbar -->
         <nav id="navbar">
             <ul>
                 <li><a href="{% url 'home' %}">home</a></li>
-                <li class="dropdown">
-                    <a href="#">shop</a>
-                    <div class="dropdown-content">
-                        <a href="{% url 'preteens' %}">preteens</a>
-                        <a href="{% url 'teens' %}">teens</a>
-                    </div>
-                </li>
+      <li><a href="{% url 'preteens' %}">preteens</a></li>
+      <li><a href="{% url 'teens' %}">teens</a></li>
                 <li><a href="{% url 'blog' %}">blog</a></li>
             </ul>
         </nav>
 
+  <!-- Right side actions -->
         <div class="header-actions">
-            <a href="{% url 'about' %}" class="impact-link">
-                <ion-icon name="leaf-outline"></ion-icon>
-                <span>our impact</span>
-            </a>
+    <a href="{% url 'about' %}" title="Impact"><ion-icon name="leaf-outline"></ion-icon></a>
 
             {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="account-link">
-                    <ion-icon name="person-outline"></ion-icon>
-                    <span>my account</span>
-                </a>
-                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+      <a href="{% url 'dashboard' %}" title="Account"><ion-icon name="person-outline"></ion-icon></a>
+      <form id="logout-form" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="logout-button">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                        <span>logout</span>
-                    </button>
+        <button type="submit" class="logout-button" title="Logout"><ion-icon name="log-out-outline"></ion-icon></button>
                 </form>
             {% else %}
-                <a href="{% url 'login-page' %}" class="account-link">
-                    <ion-icon name="person-outline"></ion-icon>
-                    <span>login</span>
-                </a>
+      <a href="{% url 'login-page' %}" title="Login"><ion-icon name="person-outline"></ion-icon></a>
             {% endif %}
 
-            <a href="{% url 'cart' %}" class="cart-link">
+    <a href="{% url 'cart' %}" title="Cart">
                 <ion-icon name="bag-handle-outline"></ion-icon>
                 <span id="cart-count">0</span>
             </a>
         </div>
-    </div>
+
+  <!-- Hamburger (mobile) -->
+  <button id="hamburger"><ion-icon name="menu-outline"></ion-icon></button>
 </header>
 
+  <!-- Spaceship Mobile Menu Card -->
+  <div id="mobile-menu-card">
+    <!-- Top links -->
+    <div class="menu-links">
+      <a href="{% url 'home' %}">home</a>
+      <a href="{% url 'preteens' %}">preteens</a>
+      <a href="{% url 'teens' %}">teens</a>
+      <a href="{% url 'blog' %}">blog</a>
+    </div>
+
+    <hr>
+
+    <!-- Bottom icons -->
+    <div class="menu-icons">
+      <a href="{% url 'about' %}" title="Impact"><ion-icon name="leaf-outline"></ion-icon></a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" title="Account"><ion-icon name="person-outline"></ion-icon></a>
+        <form id="logout-form-mobile" action="{% url 'logout' %}" method="post" class="logout-form-mobile">
+          {% csrf_token %}
+          <button type="submit" class="logout-button" title="Logout"><ion-icon name="log-out-outline"></ion-icon></button>
+        </form>
+      {% else %}
+        <a href="{% url 'login-page' %}" title="Login"><ion-icon name="person-outline"></ion-icon></a>
+      {% endif %}
+
+      <a href="{% url 'cart' %}" title="Cart">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+        <span id="cart-count-mobile">0</span>
+      </a>
+    </div>
+  </div>
 
   {# The main content area. Child templates will insert their unique HTML here. #}
   <main>

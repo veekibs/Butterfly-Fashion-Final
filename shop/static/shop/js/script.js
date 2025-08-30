@@ -21,19 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         setupEventListeners();
     }
 
-    // --- MOBILE HAMBURGER MENU ---
+    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileCard = document.getElementById('mobile-menu-card');
 
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation(); // prevent click from bubbling to document
-        mobileMenu.classList.toggle('active');
+    hamburger.addEventListener('click', () => {
+        mobileCard.classList.toggle('active');
     });
 
-    // Click anywhere outside to close
+    // Close menu if clicking outside
     document.addEventListener('click', (e) => {
-        if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-            mobileMenu.classList.remove('active');
+        if (!mobileCard.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileCard.classList.remove('active');
         }
     });
 });
@@ -266,34 +265,6 @@ function setupEventListeners() {
             });
         });
     }
-
-    // NEW MOBILE MENU LOGIC 
-    const menuOpen = document.getElementById('mobile-menu-open');
-    const menuClose = document.getElementById('mobile-menu-close');
-    const mobileNav = document.getElementById('mobile-nav'); 
-    const navbar = document.getElementById('navbar');
-    const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
-
-    if (menuOpen && navbar) {
-        menuOpen.addEventListener('click', () => {
-            navbar.classList.add('active');
-        });
-    }
-
-    if (menuClose && navbar) {
-        menuClose.addEventListener('click', () => {
-            navbar.classList.remove('active');
-        });
-    }
-
-    // CLOSE THE MENU WHEN A LINK IS CLICKED 
-    if (mobileNavLinks.length > 0 && mobileNav) {
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-            });
-        });
-    }
 }
 
 /**
@@ -385,9 +356,21 @@ function updateCartIcon(cartData) {
         if (cartData && cartData.items) {
             totalQuantity = cartData.items.reduce((sum, item) => sum + item.quantity, 0);
         }
-        cartSpan.textContent = totalQuantity;
-    }
-}
+
+        // Desktop cart count
+        const cartDesktop = document.getElementById("cart-count");
+        if (cartDesktop) {
+            cartDesktop.textContent = totalQuantity;
+        }
+
+        // Mobile cart count
+        const cartMobile = document.getElementById("cart-count-mobile");
+        if (cartMobile) {
+            cartMobile.textContent = totalQuantity;
+        }
+    } 
+} 
+
 
 /**
  * Fetches the full cart details from the API + renders them on the cart page

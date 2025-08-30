@@ -333,7 +333,7 @@
 /* Extra small devices (max-width: 480px) */
 @media screen and (max-width: 480px) {
   #landing {
-    height: 28vh;
+    height: 40vh;
     padding: 0 1vw;
   }
   #landing h1 {

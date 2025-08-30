@@ -30,6 +30,7 @@
 
 {# The main container for the table of products in the cart #}
 <div class="products-container">
+  <div class="table-wrapper">
   <table class="table">
     <thead>
       <tr>
@@ -41,11 +42,14 @@
         <td>Subtotal</td>
       </tr>
     </thead>
-    {# The table body which the script.js file will find this element by its ID + dynamically fill it with the cart items #}
+      {# The table body which script.js will dynamically fill #}
     <tbody id="cart-table-body">
-      <tr><td colspan="6" style="text-align: center; padding: 40px;">loading your cart...</td></tr>
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 40px;">loading your cart...</td>
+        </tr>
     </tbody>
   </table>
+</div>
 </div>
 
 {# A container for the summary section at the bottom of the page #}

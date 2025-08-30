@@ -35,6 +35,7 @@
     {# This is a conditional check: it checks if the 'orders' variable (passed from the view) exists + is not empty #}
     {% if orders %}
         {# If there are orders, display the history table. #}
+    <div class="table-wrapper">
         <table class="order-history-table">
             <thead>
                 <tr>
@@ -65,6 +66,7 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     {% else %}
         {# If there are no orders, display this message instead of the table #}
         <p>you have not placed any orders yet.</p>
