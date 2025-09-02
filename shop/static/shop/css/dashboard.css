@@ -29,18 +29,18 @@
     text-align: center;
 }
 .dashboard-header h1 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .dashboard-header p {
-    font-size: 1.1rem;
-    color: #555;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* --- Order History Table --- */
 /* The table that displays the user's past orders */
 .order-history-table {
-    width: 100%;
-    border-collapse: collapse; /* Removes space between table cell borders */
+  width: 100%;
+  border-collapse: collapse; /* Removes space between table cell borders */
 }
 
 /* Styling for all table cells (header + body) */
@@ -77,7 +77,7 @@
     margin: 0;
 }
 .order-history-table td ul li {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 /* Makes the Order ID text bold */
@@ -96,7 +96,7 @@
 /* Add padding inside table cells for readability */
 .order-history-table th,
 .order-history-table td {
-    padding: 15px 10px;
+  padding: 15px 10px;
 }
 
 /* --- RESPONSIVE DESIGN --- */
