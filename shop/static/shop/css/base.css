@@ -379,6 +379,11 @@ footer a {
   display: none;
 }
 
+#cart-count,
+#cart-count-mobile {
+  display: inline-block;
+}
+
 /* MEDIA QUERY: MOBILE ONLY */
 @media (max-width: 768px) {
   #mobile-menu-card {
